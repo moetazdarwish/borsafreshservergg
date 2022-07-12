@@ -1,0 +1,132 @@
+{% extends 'home/main.html' %} {% load static %} {% block content %}
+
+<style>
+    .card-img-top:hover {
+        opacity: 1.0;
+    }
+    
+    divmainimg {
+        position: relative;
+    }
+    
+    div.divmenu {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg'%}">
+    <div class="container" style="margin-bottom:20px;">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>About Us</h2>
+                    <div class="breadcrumb__option">
+
+                        <h5 style="color: white;">There are two spiritual dangers in not owning a farm. One is the danger of supposing that breakfast comes from the grocery, and the other that heat comes from the furnace</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Hero Section End -->
+
+
+
+<!-- Featured Section Begin -->
+
+
+<section style="border: 0px;align-items: center;">
+    <div class="container-fluid">
+
+        <div class="col-11 justify-content-center" style="border: 0px;align-items: center;" id="farrm">
+            <div class="row card " style="flex-direction: row;flex-wrap: nowrap;padding-left: 40px;padding-right: 40px;border:0px;margin-bottom: 40px;margin-left: 40px;">
+
+                <div class="card-body">
+                    <p>
+                        <h4 style="color:green;text-align:center">We reducing the products life cycle to minimize cost by linking main product suppliers and small farms to end Consumers</h4>
+
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-11 justify-content-center" style="border: 0px;align-items: center;" id="farrm">
+            <div class="row card " style="flex-direction: row;flex-wrap: nowrap;padding-left: 40px;padding-right: 40px;border:0px;margin-bottom: 40px;margin-left: 40px;">
+
+                <div class="card-body"><i class="fal fa-tractor fa-4x" style="color:rgb(45, 143, 40);margin-bottom:5px;"></i>
+
+                    <p class="card-text h5">We working closley with small farms and Peoples whom create thier small farms </p>
+                    <p class="card-text h5">By providing to them the best free Support Those peoples can generate better incomes</p>
+                    <p class="card-text h5">If interested to know more and how to build your own farm , please visit our Farms section</p>
+
+                    <a class="btn btn-primary rounded-pill float-right" href="{% url 'farms' %}" style="background-color: #357132b5; border-color: #2d5f2ab5;">More info</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-11 justify-content-center" style="border: 0px;align-items: center;" id="sshp">
+            <div class="row card " style="flex-direction: row;flex-wrap: nowrap;padding-left: 40px;padding-right: 10px;border:0px;margin-bottom: 40px;margin-left: 40px;">
+                <div class="card-body">
+                    <p><i class="fal fa-store fa-4x" style="color:rgb(14, 96, 220)"></i>
+                        <h4 class="font-weight-bolder " style="color: #502b2b; text-align: left;margin-bottom: 0px;">Market Place</h4>
+                    </p>
+                    <p class="card-text h5">we generate pricing system working on demand and supply for every location </p>
+                    <p class="card-text h5">We working with Hdroponics Farms and production to ensure products Pesticide free</p>
+                    <p class="card-text h5">Farms simply add thier price direct to the customers,our system always update itself to bring best price offered </p>
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Footer Section Begin -->
+<footer class="footer spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 col-md-6 col-sm-6">
+                <div class="footer__about">
+                    <div class="footer__about__logo">
+                        <a href="./index.html"><img src="{% static 'img/logo.png'%}" alt=""></a>
+                    </div>
+                    <ul>
+                        <li>Address: 60-49 Road 11378 New York</li>
+                        <li>Phone: +65 11.188.888</li>
+                        <li>Email: hello@colorlib.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 offset-lg-1">
+                <div class="footer__widget">
+                    <h6>Useful Links</h6>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">About Our Shop</a></li>
+                        <li><a href="#">Secure Shopping</a></li>
+                        <li><a href="#">Delivery infomation</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">For Delivery Job</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">Who We Are</a></li>
+                        <li><a href="#">Our Services</a></li>
+                        <li><a href="#">Projects</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Innovation</a></li>
+                        <li><a href="#">Testimonials</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+</html>
+{% endblock %}

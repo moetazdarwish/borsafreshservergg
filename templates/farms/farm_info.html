@@ -1,0 +1,11 @@
+<div class="card" style="width: 42rem;">
+    <div class="card-body">
+      <h5 class="card-title">{{get_point.farm_name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{get_point.city}} {{get_point.country}}</h6>
+      <p class="card-text"> Manager : {{get_point.name.get_full_name}}</p>
+      <p class="card-text"> Phone : {{get_point.name.userprofile.phone}}</p>
+      <p class="card-text"> Address : {{get_point.name.userprofile.address}}</p>
+      <a class="btn btn-primary rounded-pill" href="{{ request.META.HTTP_REFERER }}">Back</a>
+      
+    </div>
+  </div>

@@ -1,0 +1,18 @@
+{% load widget_tweaks %}
+<div class="row">
+    <div class="col-md-9 col-md-offset-2 rounded">
+        <h4> Cancelation Request</h4>
+        <div class="form-bg rounded">
+            <form class="form rounded" method="post" action={% url 'returnRefund' order.id %}>{% csrf_token %}
+
+                
+                <div class="form-group">
+                    {% render_field form.text class="form-control" type="text" rows="7" placeholder="Write Reason of Cancelation - Required" required="" %}
+
+                    <button type="submit" class="btn btn-primary  text-center btn-blue rounded-pill" style="margin-top:30px">Submit </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+{% load widget_tweaks %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+<div classs="d-flex flex-row align-items-center mb-4" style="display:flex;flex-wrap: nowrap;flex-direction: row;">
+    <div class="col-md-2">
+        <span><h4>{{category.name}}</h4></span>
+        <span><h5>{{category.category}}</h5></span>
+
+    </div>
+    <div class="col-md-6">
+
+        <img src="{{category.photo.url}}" class="rounded-circle mt-4" alt="" style="max-width: 50%;margin:0px;float:right;">
+
+    </div>
+
+</div>
+<div class="container">
+    <span class="h5" style="margin:10px;" hx-get="{% url 'getAvgPrice' category.id %}" hx-trigger="load" hx-target="this">hello</span>
+</div>
+<div class="container">
+    <form method="post" action="{% url 'get_item_details' category.id %}"> {% csrf_token %}
+        <table class="table table-borderless " style="width: 600px;">
+
+            <tbody>
+                <tr>
+                    <td>
+                        <label>Price</label>
+                        <div style="float: right;">
+                            <a id="popoverprice" class="btn" data-content="Price will add in Local currency" rel="popover" data-placement="bottom" data-trigger="hover"><i class="fas fa-info"></i></a>
+                        </div>
+                        {% render_field form.price class="form-control" type="number" min="1" %}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label>Available Quantity </label>
+                        <div style="float: right;">
+                            <a id="popoverquantity" class="btn" data-content="Add Traget Selling Quantity within Due Date " rel="popover" data-placement="bottom" data-trigger="hover"><i class="fas fa-info"></i></a>
+                        </div>
+                        {% render_field form.inventory class="form-control" type="number" min="1" %}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Measurement</label>
+                        <div style="float: right;">
+                            <a id="popoverunit" class="btn" data-content="Select Quantity Unit" rel="popover" data-placement="bottom" data-trigger="hover"><i class="fas fa-info"></i></a>
+                        </div>
+                        <select class="form-control" aria-label="Default" name="scale">
+                            <option selected>Select</option>
+                            {% for i in SCALE %}
+                            <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Due Date</label>
+                        <div style="float: right;">
+                            <a id="popoverdue_date" class="btn" data-content="Add Quantity Availbality per day or Default is 3 Days " rel="popover" data-placement="bottom" data-trigger="hover"><i class="fas fa-info"></i></a>
+                        </div>
+                        {% render_field form.inv_due_date class="form-control" type="date" min="0" %}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                            <button type="submit" class="btn btn-success btn-lg">ٍSubmit</button>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+    </form>
+
+</div>
+<script>
+    $('#popoverunit').popover();
+    $('#popoverdue_date').popover();
+    $('#popoverprice').popover();
+    $('#popoverquantity').popover();
+</script>

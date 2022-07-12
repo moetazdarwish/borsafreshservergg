@@ -1,0 +1,27 @@
+{% load widget_tweaks %}
+<div class="card" style="width: 42rem;">
+    <div class="card-body">
+        <h5 class="card-title">Order No :{{get_list.order.transaction_id}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{get_list.city}} {{get_list.country}}</h6>
+
+        <form method="POST" enctype="multipart/form-data" action="{% url 'confirmDelivery' get_list.id %}">{% csrf_token %}
+            <fieldset>
+                <legend>{{ form.status.label }}</legend>
+                {% for radio in form.status %}
+                <div class="myradio">
+
+                    {{radio}}
+                </div>
+                {% endfor %}
+            </fieldset>
+
+            {% render_field form.photo class="form-control" type="file" accept="image/png, image/gif, image/jpeg" required="" %}
+
+            <div style="margin-top: 20px;">
+                <a class="btn btn-primary rounded-pill" href="{{ request.META.HTTP_REFERER }}">Back</a>
+                <button class="btn btn-primary rounded-pill" type="submit">Confirm</button>
+
+            </div>
+        </form>
+    </div>
+</div>

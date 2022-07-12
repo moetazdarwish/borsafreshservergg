@@ -1,0 +1,105 @@
+{% load static %}
+<div class="horizontal-menu">
+
+    <nav class="bottom-navbar" style="justify-content: center;">
+        <div class="row">
+            <div class="container" style="margin: 5px;">
+                <div class="text-center  justify-content-center">
+                    <a class="navbar-brand brand-logo"><img src="{% static 'images/logo.png' %}" alt="logo" style="width:100px ;" /></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container">
+                <ul class="nav page-navigation">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main' %} ">
+                            <i class="mdi mdi-file-document-box menu-icon"></i>
+                            <span class="menu-title">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'userList' %} " class="nav-link">
+                            <i class="mdi mdi-account-card-details"></i>
+                            <span class="menu-title">Users</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="submenu">
+                            <ul>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'userList' %}">User</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'userTrader' %}">Trader</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'userFarms' %}">Farms</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'order' %}" class="nav-link">
+                            <i class="mdi mdi-chart-areaspline"></i>
+                            <span class="menu-title">Sales</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'map' %}" class="nav-link">
+                            <i class="mdi mdi-map-marker-radius"></i>
+                            <span class="menu-title">Zones</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'adsList' %}" class="nav-link">
+                            <i class="mdi mdi-chemical-weapon"></i>
+                            <span class="menu-title">Ads</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'productCatg' %}" class="nav-link">
+                            <i class="mdi mdi-carrot "></i>
+                            <span class="menu-title">Product Category</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'supportTiket' %}" class="nav-link">
+                            <i class="mdi mdi-human-greeting"></i>
+                            <span class="menu-title">Support</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="submenu">
+                            <ul>
+
+                                <li class="nav-item"><a class="nav-link" href="{% url 'supportFarmsList' %}">Farms Support</a></li>
+                            </ul>
+                        </div>
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'getIncomeAccunt' %}" class="nav-link">
+                            <i class="mdi mdi-bank"></i>
+                            <span class="menu-title">Account</span>
+                            <i class="menu-arrow"></i>
+                        </a>
+                        <div class="submenu">
+                            <ul>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'getIncomeAccunt' %}">Income Acc</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'getExpenceAccunt' %}">Expenses Acc</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'getCashOAccunt' %}">Cash Out Acc</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'getRefundOAccunt' %}">Refund Acc</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'getTaxAccunt' %}">Tax Acc</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'getRevAccunt' %}">Revenue Acc</a></li>
+                            </ul>
+
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="docs/documentation.html" class="nav-link">
+                            <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+                            <span class="menu-title">Documentation</span></a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+</div>

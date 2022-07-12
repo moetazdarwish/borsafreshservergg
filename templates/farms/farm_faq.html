@@ -1,0 +1,60 @@
+{% extends 'farms/farm_main.html' %} {% load static %} {% block content %}
+
+
+<div class="breadcrumb-area">
+
+    <div class="top-breadcrumb-area bg-img bg-overlay d-flex align-items-center justify-content-center" style="background-image: url(/static/farm/img/bg-img/24.jpg);">
+        <h2>Contact Us</h2>
+    </div>
+
+
+</div>
+
+
+<section class="our-services-area bg-gray " style="padding-top: 20px;">
+    <div class="container">
+
+
+
+        <div id="wreqst">
+
+
+            <div class="accordion w-100" id="basicAccordion">
+                <div class="accordion-item">{% for i in faq_gen %}
+                    <div class="row">
+                        <h4 style="color: red;">
+                            - {{i.subject}}
+                        </h4>
+                        <h5 style="margin: 25px;">
+                            {{i.answer}}
+                        </h5>
+                    </div> {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center "> {% if faq_gen.has_previous %}
+
+            <li class="page-item"><a class="page-link" href="?page={{ faq_gen.previous_page_number }}" style="border-radius:10%"><i class="fas fa-angle-double-left"></i></a></li> {% endif %}
+            <span class="current" style="padding-left:15px;padding-right:15px;padding-top:10px;">
+                Page {{ faq_gen.number }} of {{ faq_gen.paginator.num_pages }}.
+            </span> {% if faq_gen.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ faq_gen.next_page_number }}" style="border-radius: 10%;"><i class="fas fa-angle-double-right"></i></a></li>
+
+            {% endif %}
+        </ul>
+    </nav>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,158 @@
+{% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+<style>
+    .top {
+        padding-top: 100px;
+        padding-bottom: 100px
+    }
+    
+    .form-bg {
+        background: rgba(37, 14, 102, 0.77);
+        padding: 10px
+    }
+    
+    .form {
+        background-color: white !important;
+        padding: 20px
+    }
+    
+    .form-group {
+        margin-bottom: 20px
+    }
+    
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0
+    }
+    
+    .form-control {
+        border-top: 0px;
+        border-left: 0px;
+        border-right: 0px;
+        border-bottom: 1px solid #b5b50c;
+        background: transparent;
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s
+    }
+    
+    button.btn {
+        display: block;
+        padding: 11px 32px;
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+        margin: 30px 0px
+    }
+    
+    .btn-blue {
+        background-color: #4285f4;
+        color: #fff;
+        border: 1px solid #4285f4
+    }
+</style>
+{% load widget_tweaks %}
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+            {% include 'farms/support_nav.html' %}
+            <main class="col-md-12 ms-sm-auto px-md-4">
+                <div class="container" style="margin: 25px">
+
+                    <h2>Ask Question</h2>
+                    <h5 id="conf"></h5>
+
+                </div>
+                <div id="wreqst">
+
+                    <div class="row">
+                        <div class="col-md-9 col-md-offset-2 rounded">
+                            <div class="form-bg rounded">
+                                <form class="form rounded" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+                                    <div class="form-group">
+                                        {% render_field form.subject class="form-control" type="text" placeholder="Add Implant Type - Required" required="" minlenght="10" %}
+                                    </div>
+                                    <div class="form-group">
+                                        {% render_field form.text class="form-control" type="text" rows="7" placeholder="Write Message - Required" required="" minlenght="50" %}</div>
+                                    <div class="form-group">
+                                        <div class="form-group col-md-2 col-sm-2">
+                                            <label class="label1">
+                                                <img src=" {% static '/img/Upload.png' %}" height="50px" width="50px">
+                                                Upload Your Photos Max 5
+
+                                                
+                                                <input id="fileupload" class="image" type="file"  style="padding-top:10px;"  name="fileupload"
+                                                    multiple="" accept="image/png, image/gif, image/jpeg"  />
+                                            </label>
+                                        </div>
+                                        <table>
+                                            <tr></tr>
+                                        </table>
+                                        <div id="divFiles">
+                                        </div>
+                                        <button type="submit" class="btn text-center btn-blue rounded-pill"><i
+                                                class="far fa-question-circle"></i> Ask </button>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+<script>
+    $('#fileupload').change(function() {
+        //get the input and the file list
+        var input = document.getElementById('fileupload');
+        if (input.files.length > 5) {
+            $('.validation').css('display', 'none');
+            alert("You can only upload a maximum of 2 files");
+            input.value = ''
+        } else {
+            $('.validation').css('display', 'block');
+        }
+    });
+</script>
+<!-- <script>
+    var filelist = new Array();
+
+    updateList = function() {
+        var input = document.getElementById('fileUploader');
+        var output = document.getElementById('divFiles');
+
+        var HTML = "<table>";
+        for (var i = 0; i < input.files.length; ++i) {
+            if (i < 5) {
+                filelist[i] = input.files.item(i).name;
+                HTML += "<tr><td>" + filelist[i] + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button ><i class='far fa-trash-alt'></i></button></td></tr>";
+            } else {
+                HTML += "<tr><td>" + 'No more' + "</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button ></td></tr>";
+            }
+
+        }
+        HTML += "</table>";
+        output.innerHTML += HTML;
+    }
+</script> -->
+{% endblock %}

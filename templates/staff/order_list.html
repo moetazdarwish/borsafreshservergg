@@ -1,0 +1,121 @@
+{% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+        {% include 'staff/staff_nav.html' %}
+            <main class="col-md-9 ms-sm-auto px-md-4">
+                <div class="container" style="margin: 25px;width:600px">
+
+                    <h2>Order History</h2>
+                </div>
+                <div class="container">
+                    <ul class="nav justify-content-center" style="margin-bottom: 10px;">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'farmsOrderAll' %}">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'farmsOrderNew' %}">New</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'farmsOrderProcess' %}">Processing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'farmsOrderDeliverd' %}">Delivered</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'farmsOrderAccept' %}">Accept</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'farmsOrderReject' %}">Reject</a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Order No.</th>
+                                <th scope="col">Supplier</th>
+                                <th scope="col">Product</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">status</th>
+                                <th scope="col">Date</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in get_list %} {% if i.status == 'FARM REJECT' %}
+                            <tr style="color: rgb(181, 49, 49);">
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{i.transaction_id}}</td>
+                                <td>{{i.supplier.farm}}</td>
+                                <td>{{i.supplier.product}}</td>
+                                <td>{{i.quantity}} {{i.supplier.scale|upper}}</td>
+                                <td>{{i.supplier.price}} {{i.supplier.symbl|upper}}</td>
+                                <td> Rejected</td>
+                                <td>{{i.create_date|date:'d-M-Y'}}</td>
+                            </tr>
+                            {% elif i.status == 'FARM ACCEPT' %}
+                            <tr style="color: rgb(66, 176, 49);">
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{i.transaction_id}}</td>
+                                <td>{{i.supplier.farm}}</td>
+                                <td>{{i.supplier.product}}</td>
+                                <td>{{i.quantity}} {{i.supplier.scale|upper}}</td>
+                                <td>{{i.supplier.price}} {{i.supplier.symbl|upper}}</td>
+
+                                <td> Accepted</td>
+                                <td>{{i.create_date|date:'d-M-Y'}}</td>
+                            </tr>
+                            {% else %}
+                            <tr style="color: rgb(46, 98, 175);">
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{i.transaction_id}}</td>
+                                <td>{{i.supplier.farm}}</td>
+                                <td>{{i.supplier.product}}</td>
+                                <td>{{i.quantity}} {{i.supplier.scale|upper}}</td>
+                                <td>{{i.supplier.price}} {{i.supplier.symbl|upper}}</td>
+                                <td> {{i.status}}</td>
+                                <td>{{i.create_date|date:'d-M-Y'}}</td>
+                            </tr>
+                            {% endif %} {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if get_list.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ get_list.previous_page_number }}">previous</a>
+                            {% endif %}
+                    
+                            <span class="current">
+                                Page {{ get_list.number }} of {{ get_list.paginator.num_pages }}.
+                            </span> {% if get_list.has_next %}
+                        <a href="?page={{ get_list.next_page_number }}">next</a>
+                        <a href="?page={{ get_list.paginator.num_pages }}">last &raquo;</a> {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+{% endblock %}

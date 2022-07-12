@@ -1,0 +1,316 @@
+<style>
+    .nav-item .fal {
+        transition: all 1s;
+        float: left
+    }
+    
+    .nav-item:hover .fal {
+        transform: rotate(360deg);
+        float: left
+    }
+    
+    .dropdown-divider {
+        border-top: 2px solid rgb(253, 253, 253);
+    }
+</style>
+<div class="col-lg-2" style="margin-top: 50px;">
+
+    <div class="d-flex flex-column  flex-shrink-0 p-2 text-white bg-dark rounded" style="border-radius: 4.25rem;">
+        <div class="hero__categories__all" style="text-align: center;">
+            <i class="fa fa-bars"></i>
+            <span style="font-size: 14px;">All departments</span>
+        </div>{% if user.is_authenticated %}
+        <ul class="nav nav-pills flex-column mb-auto" style="margin-top:10px;">
+
+            <li class="nav-item" style="padding-top: 3px;text-align: center;">
+
+                <a style="cursor: pointer; font-size: 16px;"><i class="fal fa-shopping-cart"></i>Purchase</a>
+
+                <div id="xxx">
+                    <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+                        <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                            <a href="{% url 'purchasingNew' %}" style="text-decoration: none;">
+
+                                <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-cart-plus"></i>Orders</h5>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                            <a href="{% url 'purchasingList' %}" style="text-decoration: none;">
+
+                                <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-list"></i>History</h5>
+                            </a>
+                        </li>
+                        <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                            <a href="{% url 'userProfile' %}" style="text-decoration: none;">
+                                <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-cogs"></i>Profile</h5>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+
+
+
+
+
+            {% if request.user.farmsprofile.approved %}
+            <div class="dropdown-divider"></div>
+            <li>
+
+                <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                    <a onclick="myorder()" style="cursor: pointer;"><i class="fal fa-store"></i> Order</a>
+
+                    <div id="myOrd" style="display: none;">
+                        <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'order_list' %}" style="text-decoration: none;">
+
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-list"></i> Orders List</h5>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'bounsOrder' %}" style="text-decoration: none;">
+
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-list"></i>Bouns Orders </h5>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'orderHistory' %}" style="text-decoration: none;">
+
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-history"></i> Orders History</h5>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+            </li>
+            <div class="dropdown-divider"></div>
+            <li>
+
+                <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                    <a onclick="myproduct()" style="cursor: pointer;"><i class="fal fa-plus-square"></i> Products</a>
+
+                    <div id="myPro" style="display: none;">
+                        <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'add_product' %}" style="text-decoration: none;">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-plus-square"></i> Add Product</h5>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'add_category' %}" style="text-decoration: none;">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-sitemap"></i> Add Product Category</h5>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'farm_all_product' %}" style="text-decoration: none;">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-list"></i> All Submitted Products</h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+            </li>
+                    {% if request.user.farmsprofile.farm %}
+            <div class="dropdown-divider"></div>
+            <li>
+
+                <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                    <a onclick="myfarm()" style="cursor: pointer;"> <i class="fal fa-tractor"></i> Farm</a>
+
+                    <div id="myDIV" style="display: none;">
+                        <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'reg_planting' %}" style="text-decoration: none;">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-seedling"></i> Register Planting</h5>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'salesReport' %}" style="text-decoration: none;">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-sack-dollar"></i>Account </h5>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'farmProfile' %}" style="text-decoration: none;">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-cogs"></i> Farm Profile </h5>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+            </li>{% endif %}
+            {% elif request.user.farmscollectionprofile %}
+            <div class="dropdown-divider"></div>
+            <li>
+
+                <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                    <a onclick="myorder()" style="cursor: pointer;"><i class="fal fa-warehouse-alt"></i> Collection Point</a>
+
+                    <div id="">
+                        <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+
+
+
+
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'getProductCollection' %}" style="text-decoration: none;">
+
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-dolly-flatbed-alt"></i>Collection
+                                    </h5>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'collectionReport' %}" style="text-decoration: none;">
+
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-sack-dollar"></i> Account
+                                    </h5>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'pointProfile' %}" style="text-decoration: none;">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-cogs"></i>Profile</h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+            </li>
+            {% elif request.user.deliveryprofile %}
+            <div class="dropdown-divider"></div>
+            <li>
+
+                <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                    <a onclick="myorder()" style="cursor: pointer;"><i class="fal fa-truck-container"></i> Delivery</a>
+
+                    <div id="">
+                        <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+
+
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'readyDelivery' %}" style="text-decoration: none;">
+
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-box-full"></i> New
+                                    </h5>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'orderDelivery' %}" style="text-decoration: none;">
+
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-box-full"></i> Orders
+                                    </h5>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'deliveryReport' %}" style="text-decoration: none;">
+
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-sack-dollar"></i> Account
+                                    </h5>
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </li>
+
+            </li>
+            
+            <div class="dropdown-divider"></div>
+            {% elif request.user.consultantprofile %}
+            <li>
+
+                <li class="nav-item" style="padding-top: 3px;text-align: center;">
+
+
+                    <div id="">
+                        <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+                            <li class="nav-item" style="text-align: center;">
+                                <a href="{% url 'farmSupportstuff' %}" style="text-decoration: none;">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-ambulance"></i> Support </h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <div class="dropdown-divider"></div>
+                <li>
+
+                    <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                        <a onclick="myreport()" style="cursor: pointer;text-decoration: none;"><i class="fal fa-file-chart-line"></i> Account</a>
+
+                        <div id="myRep" style="display: none;">
+                            <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+
+                                <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                    <a href="{% url 'api_product' pk='21' %}">
+                                        <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-sack-dollar"></i> Withdrawal</h5>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+
+                </li>
+                {% endif %} {% else %}
+
+        </ul>
+       
+
+
+            {% endif %}
+
+
+
+    </div>
+</div>
+<script>
+    function myfarm() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function myproduct() {
+        var y = document.getElementById("myPro");
+        if (y.style.display === "none") {
+            y.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function myorder() {
+        var z = document.getElementById("myOrd");
+        if (z.style.display === "none") {
+            z.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    function myreport() {
+        var w = document.getElementById("myRep");
+        if (w.style.display === "none") {
+            w.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>

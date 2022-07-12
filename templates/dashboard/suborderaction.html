@@ -1,0 +1,15 @@
+<tr style="text-align: center;">
+    <td>Action</td>
+    <td> {{order.transaction_id}}</td>
+    <td><button type="button" class="btn btn-primary btn-rounded btn-fw" hx-post="{% url 'subOrderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"ACCEPT"}'>Accpet</button></td>
+    <td colspan="2"> <button type="button" class="btn btn-success btn-rounded btn-fw" hx-post="{% url 'subOrderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"DELIVERY OUT"}'>DELIVERY-OUT</button></td>
+    <td> <button type="button" class="btn btn-success btn-rounded btn-fw" hx-post="{% url 'subOrderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"DELIVERED"}'>Delivered</button></td>
+    <td> <button type="button" class="btn btn-warning  btn-rounded btn-fw" hx-post="{% url 'subOrderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"RESCHEDULE"}'>RESCHEDULE</button></td>
+    <td> <button type="button" class="btn btn-danger btn-rounded btn-fw" hx-trigger="click" hx-post="{% url 'subOrderAction' order.id %}" hx-confirm="Are you sure?" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-target="body" hx-vals='{"action": "stat","stut":"REFUSED"}'>Refused</button></td>
+    <td> <button type="button" class="btn btn-danger btn-rounded btn-fw" hx-post="{% url 'subOrderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"CANCELLED"}'>cancelled</button>        </td>
+
+    <td> <button type="button" class="btn btn-danger btn-rounded btn-fw" hx-post="{% url 'subOrderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"REJECT"}'>Reject</button></td>
+
+
+
+</tr>

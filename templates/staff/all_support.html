@@ -1,0 +1,99 @@
+{% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+            {% include 'staff/staff_nav.html' %}
+            <main class="col-md-9 ms-sm-auto px-md-4">
+                <div class="container" style="margin: 25px;width:600px">
+
+                    <h2>Requested Support</h2>
+                </div>
+                <div class="container">
+                    <ul class="nav justify-content-center" style="margin-bottom: 10px;">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'getConsultAll' %}">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'getConsultPending' %}">New</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'farmSupport' %}">Support Request</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'farmSupportPending' %}">Pending Request</a>
+                        </li>
+                        
+                    </ul>
+
+                </div>
+                <div class="table-responsive" id="slist">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr class="text-center text-wrap" style="width: 6rem;">
+                                <th scope="col"></th>
+                                <th scope="col">Farm </th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Answred</th>
+                                <th scope="col">Info</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in get_list %}
+                            <tr class="text-center text-wrap" style="width: 6rem;">
+                                <td>{{ forloop.counter }}</td>
+                                <td>
+                                {{i.farm}}
+                                </td>
+                             
+                                <td >{{i.subject}}</td>
+                                <td>{{i.answered}}</td>
+                                
+                                <td ><button class="btn btn-primary rounded-pill" hx-get="{% url 'getQuestSupport' i.id %}" hx-trigger="click" hx-target="#slist"><i class="fal fa-info"></i></button></td>
+                                
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="pagination">
+                        <span class="step-links">
+                            {% if get_list.has_previous %}
+                                <a href="?page=1">&laquo; first</a>
+                                <a href="?page={{ get_list.previous_page_number }}">previous</a>
+                            {% endif %}
+                    
+                            <span class="current">
+                                Page {{ get_list.number }} of {{ get_list.paginator.num_pages }}.
+                            </span> {% if get_list.has_next %}
+                        <a href="?page={{ get_list.next_page_number }}">next</a>
+                        <a href="?page={{ get_list.paginator.num_pages }}">last &raquo;</a> {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+    const date1 = new Date('7/13/2010');
+    const date2 = new Date('12/15/2010');
+    const diffTime = Math.abs(date2 - date1);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    console.log(diffTime + " milliseconds");
+    console.log(diffDays + " days");
+</script>
+{% endblock %}

@@ -1,0 +1,247 @@
+<div class="card" style="padding: 15px; background-color: rgb(144, 247, 221);">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{% url 'getCashOTraderallAccunt' user.id %}" class="btn btn-dark btn-rounded btn-fw" style="margin-right: 15px;">Account</a>
+                    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-rounded btn-fw" style="margin-right: 15px; float: right;">BACK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding: 15px;">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{user.name.get_full_name}}</h4>
+                    <p class="card-description">
+
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <address>
+                          <p class="font-weight-bold"> {{user.postal_code}}</p>
+                          <p>
+                            {{user.address}}
+                          </p>
+                          <p>
+                            {{user.area}}
+                          </p>
+                          <p>
+                            {{user.city}}
+                          </p>
+                          <p>
+                            {{user.country}}
+                          </p>
+                        </address>
+                        </div>
+                        <div class="col-md-6">
+                            <address class="text-primary">
+                          <p class="font-weight-bold">
+                            E-mail
+                          </p>
+                          <p class="mb-2">
+                            {{user.name.email}}
+                          </p>
+                          <p class="font-weight-bold">
+                            {{user.phone}}
+                          </p>
+                         
+                        </address>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5>Trader: {{user.is_trader}} /{{user.trader_name}} </h5>
+                    <h5>Farm: {{user.is_farm}} / {{user.farm_name}}</h5>
+                    <p class="lead">
+                        {{user.join_date}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Zone</h4>
+                    <p class="card-description">
+                    </p>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Zone</th>
+                                    <th>city</th>
+                                    <th>Country</th>
+                                </tr>
+                            </thead>
+                            <tbody>{% for i in zons %}
+                                <tr>
+
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{i.zone}}</td>
+                                    <td>{{i.zone.city}}</td>
+                                    <td>{{i.zone.country}}</td>
+
+
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Files</h4>
+
+                    <div class="table-responsive pt-3">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <form id="form" hx-encoding="multipart/form-data" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-post="{% url 'orderTraderDetails' %}" hx-vals='{"myid": "{{user.id}}"}' hx-target="#data">
+                                    <div class="row" style="align-items: center;">
+                                        <div class="col-3">
+                                            <label for="exampleInputName1">Title</label>
+                                            <input type="text" name="title" class="form-control" maxlength="50" id="exampleInputName1" placeholder="Title">
+                                            <input id="uploadfile" type="file" name="file">
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary btn-rounded btn-fw">
+                                        Upload
+                                    </button>
+                                            <progress id="progress" value="0" max="100"></progress>
+                                        </div>
+
+                                    </div>
+                                </form>
+                                <script>
+                                    htmx.on('#form', 'htmx:xhr:progress', function(evt) {
+                                        var x = htmx.find("#uploadfile")
+                                        if (x.files.length == 0) {
+                                            window.alert("no files selected");
+                                        } else {
+                                            htmx.find('#progress').setAttribute('value', evt.detail.loaded / evt.detail.total * 100)
+                                        }
+
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="table-responsive pt-3">
+                            <div class="card">
+                                <div class="card-body">
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+
+                                                <th>
+                                                    Title
+                                                </th>
+                                                <th>
+                                                    File
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for i in fils %} {% if i.photo.url %}
+                                            <tr class="table-info">
+                                                <td>
+                                                    {{i.title|safe}}
+                                                </td>
+                                                <td>
+                                                    <a href="{{i.photo.url}}" download>Download</a>
+
+                                                </td>
+
+                                            </tr>
+                                            {% endif %} {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Selling Orders</h4>
+                <div class="table-responsive">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr style="text-align: center;">
+                                <th>#</th>
+                                <th>Order</th>
+                                <th>Product</th>
+                                <th>Selling Price</th>
+                                <th>Vendor Price</th>
+                                <th>Quantity</th>
+                                <th>Weight</th>
+                                <th>Scale</th>
+                                <th>Box</th>
+                                <th>Bulk</th>
+                                <th>RTE</th>
+                                <th>Hydro</th>
+                                <th>date</th>
+                                <th>Status</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in order %}
+                            <tr style="text-align: center;">
+                                <td>{{forloop.counter}}</td>
+                                <td>{{i.transaction_id}}</td>
+                                <td>{{i.product.name}}</td>
+                                <td>{{i.buy_price}}</td>
+                                <td>{{i.supplier_price}}</td>
+                                <td>{{i.quantity}}</td>
+                                <td>{{i.weight}}</td>
+                                <td>{{i.scale}}</td>
+                                <td>{{i.is_box}}</td>
+                                <td>{{i.is_bulk}}</td>
+                                <td>{{i.is_mix}}</td>
+                                <td>{{i.hydro}}</td>
+                                <td>{{i.create_date|date:"M ,d,Y" }}</td>
+                                <td>{{i.status}}</td>
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <div style="margin-top: 20px;">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center "> {% if order.has_previous %}
+                                <li class="page-item"><a class="btn btn-outline-secondary" href="?page=1" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>
+                                <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ order.previous_page_number }}">Previous</a></li> {% endif %}
+                                <span class="current" style="padding-left:15px;padding-right:15px;">
+                    Page {{ order.number }} of {{ order.paginator.num_pages }}.
+                </span> {% if order.has_next %}
+                                <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ order.next_page_number }}">Next</a></li>
+                                <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ order.paginator.num_pages }}" aria-label="last"><span aria-hidden="true">&raquo;</span></a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

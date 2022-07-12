@@ -1,0 +1,45 @@
+<div class="container" style="margin-bottom:20px;">
+<a class="btn btn-primary rounded-pill" href="{{ request.META.HTTP_REFERER }}" >Back</a>
+<a class="btn btn-primary rounded-pill" href="{% url 'formCategoryEdit' get_list.id %}" >Edit</a>
+</div>
+<div classs="d-flex flex-row align-items-center mb-4" style="display:flex;flex-wrap: nowrap;flex-direction: row;">
+    <div class="col-md-2">
+        <span><h4>{{get_list.name}}</h4></span>
+        <span><h5>{{get_list.category}}</h5></span>
+
+    </div>
+    <div class="col-md-6">
+
+        <img src="{{get_list.photo.url}}" class="rounded-circle mt-4" alt="" style="max-width: 50%;margin:0px;float:right;">
+
+    </div>
+
+</div>
+<div class="container">
+    
+        <table class="table table-borderless " >
+
+            <tbody>
+                <tr>
+                    <td>
+                        <label style="color:red">Packging :</label>
+                        <div style="float: right;">
+                            
+                        </div>
+                        {{get_list.packing_info}}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label style="color:red">Quality :</label>
+                        {{get_list.quality_info}}
+                    </td>
+                </tr>
+            
+            </tbody>
+
+        </table>
+
+
+</div>

@@ -1,0 +1,41 @@
+<table class="table table-bordered">
+    <thead>
+        <tr style="text-align: center;">
+            <th>#</th>
+            <th>Tracking</th>
+            <th>Product</th>
+            <th>rate</th>
+            <th colspan="2">review</th>
+
+            <th>buyer</th>
+            <th>trader</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in track %}
+        <tr style="text-align: center;">
+            <td>{{forloop.counter}}</td>
+            <td>{{i.sub_order.transaction_id}}</td>
+            <td>{{i.sub_order.product.name}} </td>
+            <td>{{i.rate}} </td>
+
+            <td colspan="2"> {{i.review}}</td>
+
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderUserDetails'  %}" hx-trigger="click" hx-target="#data" hx-vals='{"myid": "{{i.name.id}}"}'>
+                    <i class="mdi mdi-account-card-details icon-md text-danger"></i>
+                    </button>
+
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderTraderDetails'  %}" hx-trigger="click" hx-target="#data" hx-vals='{"myid": "{{i.sub_order.trader.id}}"}'>
+                                <i class="mdi mdi-information-outline icon-md text-danger"></i>
+                              </button>
+            </td>
+
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

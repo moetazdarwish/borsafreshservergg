@@ -1,0 +1,272 @@
+{% extends 'farms/farm_main.html' %} {% load static %} {% block content %}
+<style>
+    .float{
+        position:fixed;
+        width:60px;
+        height:60px;
+        bottom:40px;
+        right:40px;
+        background-color:#25d366;
+        color:#FFF;
+        border-radius:50px;
+        text-align:center;
+      font-size:30px;
+        box-shadow: 2px 2px 3px #999;
+      z-index:100;
+    }
+    
+    .my-float{
+        margin-top:16px;
+    }
+</style>
+<!-- ##### Hero Area Start ##### -->
+<section class="hero-area ">
+    <div class="hero-post-slides owl-carousel ">
+
+        <!-- Single Hero Post -->
+        <div class="single-hero-post bg-overlay " style="height: 300px; ">
+            <!-- Post Image -->
+            <div class="slide-img bg-img " style="background-image: url(/static/farm/img/bg-img/1-1.jpg); "></div>
+            <div class="container h-100 ">
+                <div class="row h-100 align-items-center ">
+                    <div class="col-12 ">
+                        <!-- Post Content -->
+                        <div class="hero-slides-content text-center ">
+                            <h4 style="color:white ">There are two spiritual dangers in not owning a farm. One is the danger of supposing that breakfast comes from the grocery, and the other that heat comes from the furnace</h4>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+<!-- ##### Hero Area End ##### -->
+
+<!-- ##### Service Area Start ##### -->
+<section class="our-services-area bg-gray section-padding-100-0 " style="padding-top:20px ; padding-bottom: 20px; ">
+    <div class="container ">
+        <div class="row ">
+            <div class="col-12 ">
+                <!-- Section Heading -->
+                <div class="section-heading text-center ">
+                    <h2>OUR SERVICES</h2>
+                    <h5>We provide the support to succeed your farm.</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-between ">
+            <div class="col-12 col-lg-5 ">
+                <div class="alazea-service-area mb-100 ">
+
+                    <!-- Single Service Area -->
+                    <div class="single-service-area d-flex align-items-center wow fadeInUp " data-wow-delay="100ms ">
+                        <!-- Icon -->
+                        <div class="service-icon mr-30 ">
+                            <img src="{% static 'farm/img/core-img/s1.png'%} " alt=" ">
+                        </div>
+                        <!-- Content -->
+                        <div class="service-content ">
+                            <h5>Space</h5>
+                            <p>Hydroponics systems available in different sizes and shapes that fit any available space Horizontally or Vertically</p>
+                            <p>The yields per plant are much higher, and the amount of crop that spoils is way lower with hydroponics than soil. These crops can be grown nearly anywhere, and problems like weeds that would normally destroy most crops are
+                                removed. </p>
+                        </div>
+                    </div>
+
+                    <!-- Single Service Area -->
+                    <div class="single-service-area d-flex align-items-center wow fadeInUp " data-wow-delay="300ms ">
+                        <!-- Icon -->
+                        <div class="service-icon mr-30 ">
+                            <img src="{% static 'farm/img/core-img/s2.png'%} " alt=" ">
+                        </div>
+                        <!-- Content -->
+                        <div class="service-content ">
+                            <h5>Water</h5>
+                            <p>In a hydroponic system, the water supply is cycled repeatedly to deliver nutrients to the plants,</p>
+                            <p>Hydroponics saves between 70-90% more water than soil, as water is recirculated and reused. There are additional benefits: Crops may yield up to three times that of traditional gardening. vegetables may contain up to 50% more
+                                A, B, C and E vitamins than conventional crops.</p>
+                        </div>
+                    </div>
+
+                    <!-- Single Service Area -->
+                    <div class="single-service-area d-flex align-items-center wow fadeInUp " data-wow-delay="500ms ">
+                        <!-- Icon -->
+                        <div class="service-icon mr-30 ">
+                            <img src="{% static 'farm/img/core-img/s3-4.png'%}" alt=" ">
+                        </div>
+                        <!-- Content -->
+                        <div class="service-content ">
+                            <h5>Labor &amp; Services</h5>
+                            <p>Hydroponic farming, on the other hand, requires very little manual labor in order to operate efficiently. The only period where there is a greater reliance on manual labor is during the initial setup process. Once all the systems
+                                are in place, hydroponic farms tend to be fairly self-sufficient.</p>
+                        </div>
+                    </div>
+                    <div class="single-service-area d-flex align-items-center wow fadeInUp " data-wow-delay="500ms ">
+                        <!-- Icon -->
+                        <div class="service-icon mr-30 ">
+                            <img src="{% static 'farm/img/core-img/b1.png'%} " alt=" ">
+                        </div>
+                        <!-- Content -->
+                        <div class="service-content ">
+                            <h5>Quality Products</h5>
+                            <p>Since the system uses clean water, quality nutrients, and operates in a controlled environment, hydroponics improves the taste and quality of produce</p>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-6 ">
+                <div class="alazea-video-area bg-overlay mb-100 " style="margin-bottom: 0px; ">
+                    <img src="{% static 'farm/img/bg-img/23-1.jpg'%} " alt=" " style="height: 450px; ">
+
+                </div>
+                <div class="single-service-area d-flex align-items-center wow fadeInUp " data-wow-delay="500ms ">
+                    <!-- Icon -->
+                    <div class="service-icon mr-30 ">
+                        <img src="{% static 'farm/img/core-img/b4.png'%}" alt=" ">
+                    </div>
+                    <!-- Content -->
+                    <div class="service-content ">
+                        <h5>Environmentally friendly</h5>
+                        <p>It requires only 10% as much water as you would need for soil.</p>
+                        <p> Most hydroponic systems require no pesticides.
+                        </p>
+                    </div>
+                </div>
+                <div class="single-service-area d-flex align-items-center wow fadeInUp " data-wow-delay="500ms ">
+                    <!-- Icon -->
+                    <div class="service-icon mr-30 ">
+                        <img src="{% static 'farm/img/core-img/b3.png'%}" alt=" ">
+                    </div>
+                    <!-- Content -->
+                    <div class="service-content ">
+                        <h5>100% Natural</h5>
+                        <p>Hydroponic growers have completely eliminated the need for soil and its micro-organisms. This has resulted in better crop quality, higher growth rates and much healthier produce, all without soil erosion or water supply contamination.
+                        </p>
+                        <p> The fertilizers used in hydroponics are much more pure than those utilized in organic growing, and they also leave no residue in cultivated produce. The result is that more people can be fed, less precious natural resources are
+                            used, and the produce is much healthier and flavorful.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="single-service-area d-flex align-items-center wow fadeInUp " data-wow-delay="500ms ">
+                <!-- Icon -->
+                <div class="service-icon mr-30 ">
+                    <img src="{% static 'farm/img/core-img/b2.png'%}" alt=" ">
+                </div>
+                <!-- Content -->
+                <div class="service-content ">
+                    <h5>Perfect Service</h5>
+
+                    <p>Hydroponics is a technique for raising plants without the use of soil and utilizing minerals in nutrient-rich water. Here are five key elements to achieving a functioning hydroponics system </p>
+                    <p>
+                        <strong>Root  support:</strong> Although soil isn't required, you still need something to support your plants as they grow. Commonly, materials are used, such as coconut fiber, peat moss, rock wool, and vermiculite. Make sure to
+                        avoid materials that may compact, such as sand or gravel, due to its low water-holding capacity and weight.</p>
+                    <p> <strong>Fresh water:</strong> You can ensure healthier plants by using filtered water with a balanced pH. Plants ideally need a pH level of 6 to 6.5, and controlled water allows you to deliver this ideal pH level, as well as being
+                        nutritionally superior to the water soil-grown plants normally get.</p>
+                    <p><strong> Nutrients:</strong> You'll need a mineral solution that contains plenty of phosphorus, magnesium, calcium, and other nutrients to help your plant stay productive and healthy. Compared to all the other methods of enriching
+                        produce, like fertilizer or crop rotation, this is far superior.</p>
+                    <p> <strong>Oxygen:</strong> You may need to leave open space between the water reservoir and your plant's base for oxygen. You may also use an air pump or air stone to oxygenate your plant.</p>
+                    <p> <strong>Light: </strong>With all plants, you need light. For those growing hydroponics indoors, you'll probably need some form of artificial lighting. We usually recommend a mix of natural lighting and artificial lighting, since that
+                        has a lower electricity bill. However, your plants can get by on purely artificial lights, like LEDs. Every plant has its own unique requirements for placement of lights and the amount of lights needed.
+                    </p>
+                </div>
+            </div>
+            <div class="single-service-area d-flex align-items-center wow fadeInUp " data-wow-delay="500ms ">
+                <!-- Icon -->
+                <div class="service-icon mr-30 ">
+                    <img src="{% static 'farm/img/core-img/cf4.png'%}" alt=" ">
+                </div>
+                <!-- Content -->
+                <div class="service-content ">
+                    <h5>Generate Income</h5>
+
+                    <p>After Successfully Harvetest your Quality production, you can generate income by selling your production in our marketplace specialized in Hydroponics products </p>
+                    <p>
+                        In our marketplace You decide selling product price direct to consumer , we take percentage from selling price to cover our cycle cost</p>
+                    <p> Our pricing system work based on supply and demand , based on market price and demand you determine the selling price </p>
+                    <p>By registing your growing before start this give us overview of the future market , and give us the ability to suggest best product to grow to generate best revenue </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### Service Area End ##### -->
+
+<!-- ##### About Area Start ##### -->
+<section class="about-us-area section-padding-100-0 ">
+    <div class="container ">
+        <div class="row justify-content-between ">
+            <div class="col-12 ">
+                <!-- Section Heading -->
+                <div class="section-heading " style="margin-bottom:20px ; ">
+                    <h2>ABOUT US</h2>
+                    <h5>We Provide free support and transferring the Knowledge</h5>
+                </div>
+                <p class="h6 ">We provide to unprofessional peoples who looking to build their own small farms the required support and link them to certified farms supplies providers</p>
+                <p class="h6 ">We built marketplace to facilite selling production on it , As one of big challange for small farms is selling thier production </p>
+                <p class="h6 ">Because of limitation of production , gives to intermediators the barganing power to reduce farm revenue </p>
+                <p class="h6 ">We elminate this power by pushing the small farms direct in the market , and we desgined the system to reduce the tasks required from the farms to sell thier production</p>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container ">
+        <div class="row ">
+            <div class="col-12 ">
+                <div class="border-line "></div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ##### About Area End ##### -->
+
+
+
+
+<!-- ##### Subscribe Area Start ##### -->
+<section class="subscribe-newsletter-area " style="background-image: url(/static/farm/img/bg-img/subscribe.png); ">
+    <div class="container ">
+        <div class="row align-items-center justify-content-between ">
+            <div class="col-12 ">
+                <!-- Section Heading -->
+                <div class="section-heading mb-0 ">
+                    <div class="row ">
+                        <h2>Build your Own Farm</h2>
+                        <a class="btn btn-success rounded-pill" href=" {%url 'farm_signup' %} " style="border-radius: 20%;margin-left: 100px;background-color: #70c745; ">
+                            <h5 style="margin: 0; ">Create Farm</h5>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://api.whatsapp.com/send?phone=+971586495751&text=Hello ready to support ." class="float" target="_blank">
+<i class="fa fa-whatsapp my-float"></i>
+</a>
+        </div>
+    </div>
+
+    <!-- Subscribe Side Thumbnail -->
+    <div class="subscribe-side-thumb wow fadeInUp " data-wow-delay="500ms ">
+        <img class="first-img " src="{% static 'farm/img/core-img/leaf.png'%} " alt=" ">
+    </div>
+</section>
+{% endblock %}

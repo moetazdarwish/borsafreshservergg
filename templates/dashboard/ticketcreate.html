@@ -1,0 +1,142 @@
+<div class="card">
+
+    <div class="card-body" style="padding: 5px;">
+        <div class="row" style="margin-bottom: 5px; float: right; margin-right: 50px;">
+
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-rounded btn-fw">BACK</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <h4 class="card-title">{{question.transaction_id}} {{name.name.get_full_name}}</h4>
+                <h4 class="card-title">Files</h4>
+                <div class="table-responsive ">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="form" hx-encoding="multipart/form-data" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-post="{% url 'supportTiketAddFile' support.id %}" hx-target="#filedata">
+                                <div class="row" style="align-items: center;">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="exampleInputName1">Title</label>
+                                            <input type="text" name="title" class="form-control" maxlength="50" id="exampleInputName1" placeholder="Title">
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-top: 20px;">
+
+                                        <input id="uploadfile" type="file" name="file">
+                                    </div>
+                                    <div class="row" style="margin-top: 20px;">
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary btn-rounded btn-fw">
+                                                Upload
+                                            </button>
+                                            <progress id="progress" value="0" max="100"></progress>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <script>
+                                htmx.on('#form', 'htmx:xhr:progress', function(evt) {
+                                    var x = htmx.find("#uploadfile")
+                                    if (x.files.length == 0) {
+                                        window.alert("no files selected");
+                                    } else {
+                                        htmx.find('#progress').setAttribute('value', evt.detail.loaded / evt.detail.total * 100)
+                                    }
+
+                                });
+                            </script>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <div class="card">
+                            <div class="card-body" id="filedata">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>
+                                                File
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in fils %} {% if i.files.url %}
+                                        <tr class="table-info">
+                                            <td>
+                                                {{i.title|safe}}
+                                            </td>
+                                            <td>
+                                                <a href="{{i.files.url}}" download>Download</a>
+
+                                            </td>
+
+                                        </tr>
+                                        {% endif %} {% endfor %}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="card-title">Question</h4>
+
+
+                <div class="card">
+                    <div class="card-body" id="qstdata">
+
+                        <form id="form" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-post="{% url 'supportTiketSubCreate' support.id %}" hx-target="#qstdata">
+                            <div class="row" style="align-items: center;">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <input type="text" name="subject" class="form-control form-control-lg" placeholder="Subject" aria-label="Subject">
+                                        <textarea name="qstn" class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <select class="form-control form-control-lg" name="dpart" id="exampleFormControlSelect1">
+                                            <option selected>Open this select menu</option>
+                                            <option value="ACCOUNT" data-select2-id="3">ACCOUNT</option>
+                                            <option value="QUALITY" data-select2-id="17">QUALITY</option>
+                                            <option value="TECHNICAL" data-select2-id="17">TECHNICAL</option>
+                                            <option value="GENERAL" data-select2-id="17">GENERAL</option>
+                                            <option value="SALES" data-select2-id="17">SALES</option>
+                                          </select>
+
+                                </div>
+                            </div>
+                            <div class="row" style="margin-top: 20px;">
+                                <div class="col-md-6">
+                                    <button class="btn btn-primary btn-rounded btn-fw">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

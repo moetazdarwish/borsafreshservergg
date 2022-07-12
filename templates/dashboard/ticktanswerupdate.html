@@ -1,0 +1,76 @@
+<div class="card">
+  
+        <div class="card-body">
+
+            <form id="form" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-post="{% url 'supportTiketAnswer' support.id %}" hx-target="#ansrdata">
+                <div class="row" style="align-items: center;">
+                    <div class="col-10">
+                        <div class="form-group">
+
+                            <textarea name="ansr" class="form-control" id="exampleTextarea1" rows="4"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <select class="form-control form-control-lg" name="option">
+                        
+                            <option selected>Open this select menu</option>
+                            <option value="CLOSED" data-select2-id="3">CLOSED</option>
+                            <option value="PROCESSING" data-select2-id="17">PROCESSING</option>
+               
+                          </select>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-control form-control-lg" name="dpart">
+               
+                            <option selected>Open this select menu</option>
+                            <option value="CLOSED" data-select2-id="3">ACCOUNT</option>
+                            <option value="PROCESSING" data-select2-id="17">QUALITY</option>
+                            <option value="PROCESSING" data-select2-id="17">TECHNICAL</option>
+                            <option value="PROCESSING" data-select2-id="17">GENERAL</option>
+                            <option value="PROCESSING" data-select2-id="17">SALES</option>
+               
+                          </select>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-md-6">
+                        <button class="btn btn-primary btn-rounded btn-fw">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+</div>
+<div class="table-responsive pt-3">
+    <div class="card">
+        <div class="card-body" >
+
+            <table class="table table-bordered">
+
+                <tbody>
+                    {% for i in answers %}
+                    <tr>
+                        <td>
+                            <p> Answer</p>
+                        </td>
+                        <td>
+                            <p> {{i.answer}}</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p>Department</p>
+                        </td>
+                        <td>
+                            <p> {{i.dep}}</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

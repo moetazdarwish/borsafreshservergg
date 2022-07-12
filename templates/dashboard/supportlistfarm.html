@@ -1,0 +1,81 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block contain %}
+<div class="card">
+    <div class="card-body">
+        <div style="margin-bottom: 10px; float: right;">
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-success btn-rounded btn-fw">Create</a>
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-rounded btn-fw">BACK</a>
+        </div>
+        <h4 class="card-title">Support List</h4>
+        <div class="col-md-6">
+            <input class="form-control" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' type="search" name="search" placeholder="Begin Typing To Search Order..." hx-post="{% url 'orderFilter' %}" hx-trigger="keyup changed delay:500ms, search" hx-target="#data" hx-indicator=".htmx-indicator">
+        </div>
+        <div class="table-responsive pt-3 " id="data">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="text-align: center;">
+                        <th>#</th>
+                        <th>Subject</th>
+                        <th>Question</th>
+                      
+      
+                        <th>Date</th>
+                        <th>Status</th>
+                      
+                        <th>Supporter</th>
+                        <th>User</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in support %}
+                    <tr style="text-align: center;" id="tr{{i.id}}">
+                        <td>{{forloop.counter}}</td>
+                        <td>{{i.subject}}</td>
+                        <td>{{i.question}}</td> 
+                  
+                        <td>{{i.create_date}} </td>
+                        <td>{{i.status}} </td>
+
+                 
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'getSupporterData' i.supporter.id %}" hx-trigger="click" hx-target="#data" >
+                                <i class="mdi mdi-information-outline icon-md text-danger"></i>
+                              </button>
+
+
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderUserDetails' %}" hx-trigger="click" hx-target="#data" hx-vals='{"myid": "{{i.user.id}}"}'>
+                            <i class="mdi mdi-account-card-details icon-md text-danger"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'supportTiketAction' i.id %}" hx-trigger="click" hx-target="#data" hx-swap="outerHTML" >
+                            <i class="mdi mdi-routes icon-md text-danger"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div style="margin-top: 20px;">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center "> {% if support.has_previous %}
+                        <li class="page-item"><a class="btn btn-outline-secondary" href="?page=1" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>
+                        <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ support.previous_page_number }}">Previous</a></li> {% endif %}
+                        <span class="current" style="padding-left:15px;padding-right:15px;">
+                        Page {{ support.number }} of {{ support.paginator.num_pages }}.
+                    </span> {% if support.has_next %}
+                        <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ support.next_page_number }}">Next</a></li>
+                        <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ support.paginator.num_pages }}" aria-label="last"><span aria-hidden="true">&raquo;</span></a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+<table class="table table-bordered">
+    <thead>
+        <tr style="text-align: center;">
+            <th>#</th>
+            <th>Country</th>
+            <th>City</th>
+            <th>Zone</th>
+            <th>Trader</th>
+            <th>Farmer</th>
+            <th>Customer</th>
+            <th>Shipping</th>
+            <th>Due Date</th>
+            <th>Lat-Greater</th>
+            <th>Lat-Lower</th>
+            <th>Long-Greater</th>
+            <th>Long-Lower</th>
+
+            <th>Trader</th>
+            <th>Edit</th>
+            <th>List</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in zones %}
+        <tr style="text-align: center;" id="tr{{i.id}}">
+            <td>{{forloop.counter}}</td>
+            <td>{{i.country}}</td>
+            <td>{{i.city}} </td>
+            <td>{{i.zone}} </td>
+            <td>{{i.trader_percent}}</td>
+            <td>{{i.farm_percent}}</td>
+            <td>{{i.customer_percent}}</td>
+            <td>{{i.shipping}}</td>
+            <td>{{i.duedate}}</td>
+            <td>{{i.lat_greater}}</td>
+            <td>{{i.lat_lower}}</td>
+            <td>{{i.long_greater}}</td>
+            <td>{{i.long_lower}}</td>
+            <td>{{i.get_trdcont}}</td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'mapZoneAction' i.id %}" hx-trigger="click" hx-target="#tr{{i.id}}" hx-swap="outerHTML">
+                <i class="mdi mdi-table-edit icon-md text-danger"></i>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'mapZoneList' i.id  %}" hx-trigger="click" hx-target="#data">
+                <i class="mdi mdi-account-card-details icon-md text-danger"></i>
+                </button>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

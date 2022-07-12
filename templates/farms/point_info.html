@@ -1,0 +1,30 @@
+<div class="card" style="width: 41rem;margin: 25px;">
+    <div class="card-body">
+        <h5 class="card-title">{{get_list.name.point_name}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{get_list.name.city}}</h6>
+        <p class="card-text">
+            <span> Phone : </span> <span> {{get_list.name.phone}} </span>
+            <br>
+            <span> Address : </span> <span> {{get_list.name.address}} </span>
+            <br>
+            <span> Area : </span> <span> {{get_list.name.area}} </span>
+            <br>
+            <span> Start Time : </span> <span> {{get_list.name.start_time}} </span>
+            <br>
+            <span> End Time : </span> <span> {{get_list.name.end_time}} </span>
+
+        </p>
+        <div class="container" style="margin-bottom:20px;">
+            <a class="btn btn-primary rounded-pill" href="{{ request.META.HTTP_REFERER }}">Back</a>
+            <form method="post" action="{% url 'pointInfo' %}">{% csrf_token %}
+
+                <br>
+                <div class="container" style="margin-bottom:20px;">
+                    <input type="text" name="reason" class="form-control" placeholder="Reason - Required" style="margin-top: 20px;margin-bottom:20px;" maxlength="250" minlength="10">
+                    <button class="btn btn-primary rounded-pill" type="submit"> Request To Change Point </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="card">
+
+    <div class="card-body" style="padding: 5px;">
+        <div class="row" style="margin-bottom: 5px; float: right; margin-right: 50px;">
+
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-rounded btn-fw">BACK</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+
+            <div class="card-body">
+                <h4 class="card-title">{{user.name.get_full_name}}</h4>
+                <form id="form" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-post="{% url 'userSubMSG' user.id %}" hx-target="body">
+                    <div class="row" style="align-items: center;">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <input type="text" name="smal_msg" class="form-control form-control-lg" placeholder="smal_msg" aria-label="Subject">
+                                <textarea name="msg" class="form-control" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="checkbox" value="True" name="admin" class="form-check-input">
+                              Admin Msg
+                            <i class="input-helper"></i></label>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 20px;">
+                        <div class="col-md-6">
+                            <button hx-trigger="click" class="btn btn-primary btn-rounded btn-fw">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

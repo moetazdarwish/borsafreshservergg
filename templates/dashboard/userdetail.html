@@ -1,0 +1,129 @@
+<div class="card" style="padding: 15px; background-color: rgb(144, 247, 221);">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="{% url 'makeRefundAccunt' user.id %}" class="btn btn-dark btn-rounded btn-fw" style="margin-right: 15px;">Refund</a>
+                    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-rounded btn-fw" style="margin-right: 15px; float: right;">BACK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="padding: 15px;">
+        <div class="col-md-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">{{user.name.get_full_name}}</h4>
+                    <p class="card-description">
+
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <address>
+                      <p class="font-weight-bold"> {{user.postal_code}}</p>
+                      <p>
+                        {{user.address}}
+                      </p>
+                      <p>
+                        {{user.area}}
+                      </p>
+                      <p>
+                        {{user.city}}
+                      </p>
+                      <p>
+                        {{user.country}}
+                      </p>
+                    </address>
+                        </div>
+                        <div class="col-md-6">
+                            <address class="text-primary">
+                      <p class="font-weight-bold">
+                        E-mail
+                      </p>
+                      <p class="mb-2">
+                        {{user.name.email}}
+                      </p>
+                      <p class="font-weight-bold">
+                        {{user.phone}}
+                      </p>
+                     
+                    </address>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5>Trader: {{user.is_trader}} /{{user.trader_name}} </h5>
+                    <h5>Farm: {{user.is_farm}} / {{user.farm_name}}</h5>
+                    <p class="lead">
+                        {{user.join_date}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Buying Orders</h4>
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr style="text-align: center;">
+                                    <th>#</th>
+                                    <th>Order No.</th>
+                                    <th>Progress</th>
+                                    <th>Amount</th>
+                                    <th>Zone</th>
+                                    <th>Date</th>
+                                    <th>Payment</th>
+                                    <th>Payment ref</th>
+                                    <th>Details</th>
+            
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in order %}
+                                <tr style="text-align: center;">
+                                    <td>{{forloop.counter}}</td>
+                                    <td>{{i.transaction_id}}</td>
+                                    <td>{{i.status}} </td>
+                                    <td>{{i.total}} {{i.symbl}}</td>
+            
+                                    <td>{{i.zone.zone}}</td>
+                                    <td>{{i.create_date}}</td>
+                                    <td>{{i.payment_result}}</td>
+                                    <td>{{i.tran_ref}}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderDetails' %}" hx-trigger="click" hx-target="#data" hx-vals='{"myid": "{{i.id}}"}'>
+                                        <i class="mdi mdi-information-outline icon-md text-danger"></i>
+                                      </button>
+                                        <a></a>
+            
+                                    </td>
+            
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <div style="margin-top: 20px;">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center "> {% if order.has_previous %}
+                                    <li class="page-item"><a class="btn btn-outline-secondary" href="?page=1" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>
+                                    <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ order.previous_page_number }}">Previous</a></li> {% endif %}
+                                    <span class="current" style="padding-left:15px;padding-right:15px;">
+                                Page {{ order.number }} of {{ order.paginator.num_pages }}.
+                            </span> {% if order.has_next %}
+                                    <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ order.next_page_number }}">Next</a></li>
+                                    <li class="page-item"><a class="btn btn-outline-secondary" href="?page={{ order.paginator.num_pages }}" aria-label="last"><span aria-hidden="true">&raquo;</span></a></li>
+                                    {% endif %}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

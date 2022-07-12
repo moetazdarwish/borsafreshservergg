@@ -1,0 +1,33 @@
+FAQFEILD = [
+    ('GENERAL', 'GENERAL'),
+    ('DELIVERY', 'DELIVERY'),
+    ('RETURN', 'RETURN'),
+    ('GROWER', 'GROWER'),
+    ('PRIVACY', 'PRIVACY'),
+    ('TRADER', 'TRADER'),
+    ('TRPOLICY', 'TRPOLICY'),
+]
+
+TIKETDEP = [
+    ('ACCOUNT', 'ACCOUNT'),
+    ('QUALITY', 'QUALITY'),
+    ('TECHNICAL', 'TECHNICAL'),
+    ('GENERAL', 'GENERAL'),
+    ('SALES', 'SALES'),
+]
+TIKETSTS = [
+    ('OPEN', 'OPEN'),
+    ('CLOSED', 'CLOSED'),
+    ('PROCESSING', 'PROCESSING'),
+]
+
+SUPPORTACTION = [
+    ('NEW', 'NEW'),
+    ('APPROVED', 'APPROVED'),
+    ('REJECT', 'REJECT'),
+]
+
+STATACTION = [
+    ('ACTIVE', 'ACTIVE'),
+    ('DEACTIVATE', 'DEACTIVATE'),
+]

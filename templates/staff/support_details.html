@@ -1,0 +1,103 @@
+
+<div class="container" style="margin-bottom:20px;">
+    <a class="btn btn-primary rounded-pill" href="{{ request.META.HTTP_REFERER }}">Back</a>
+    <a class="btn btn-primary rounded-pill" href="{% url 'formCategoryEdit' get_list.id %}">Edit</a>
+    <a class="btn btn-danger rounded-pill float-right" href="{% url 'deleteConsult' get_list.id %}">Delete</a>
+</div>
+<div classs="d-flex flex-row align-items-center mb-4" style="display:flex;flex-wrap: nowrap;flex-direction: row;">
+    <div class="col-md-5">
+        <span><h4>User : {{get_list.name.get_full_name}}</h4></span>
+        <span><h5>Phone : {{get_list.name.userprofile.phone}}</h5></span>
+        <span><h5>Email : {{get_list.name.email}}</h5></span>
+
+    </div>
+</div>
+
+<div class="container">
+
+    <table class="table table-borderless ">
+
+        <tbody>
+            
+            <tr>
+                <td>
+                    <label style="color:red">City :</label>
+
+                </td>
+                <td>
+                    {{get_list.city}}
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label style="color:red">Country :</label>
+
+                </td>
+                <td>
+                    {{get_list.country}}
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label style="color:red">Currency :</label>
+
+                </td>
+                <td>
+                    {{get_list.symbl}}
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label style="color:red">Experince :</label>
+
+                </td>
+                <td>
+                    {{get_list.experince}}
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label style="color:red">Price per Advice :</label>
+
+                </td>
+                <td>
+                    {{get_list.price_grow}}
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label style="color:red">Approved :</label>
+
+                </td>
+                <td>
+                    {% if get_list.approved %}
+                    {{get_list.approved}}
+{% else %}
+                    <a class="btn btn-primary rounded-pill" href="{% url 'approveConsult' get_list.id %}">Approve</a>
+            
+                    {% endif %}
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label style="color:red">Terms :</label>
+
+                </td>
+                <td>
+                    {{get_list.terms}}
+                </td>
+
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+</div>

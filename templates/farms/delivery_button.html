@@ -1,0 +1,6 @@
+
+
+Delivery : {{product.delivery |title}}   
+<button type="button" class="rounded-pill" hx-get="{% url 'getDeliveryInfo' product.delivery.id %}" hx-triger="click" hx-target="#offer" style="border-width: 0px">
+    <i class="fas fa-info"></i>
+  </button>

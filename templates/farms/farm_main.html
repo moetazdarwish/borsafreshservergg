@@ -1,0 +1,171 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>Alazea - Gardening &amp; Landscaping HTML Template</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'farm/img/core-img/favicon.ico'%}">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{% static 'farm/style.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" type="text/css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script type="text/javascript">
+        var user = '{{request.user}}'
+
+        function getToken(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        const csrftoken = getToken('csrftoken');
+
+        function getCookie(name) {
+            var cookieArr = document.cookie.split(";")
+            for (var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split("=");
+                if (name == cookiePair[0].trim()) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+        var cart = JSON.parse(getCookie('cart'))
+        if (cart == undefined) {
+            cart = {}
+            console.log('cart was created !')
+            document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        }
+
+        // function getdata(name) {
+        //     fetch('https://api.ipregistry.co/?key=xrtf5t6ngwxsjl6x')
+        //         .then(function(response) {
+        //             return response.json();
+        //         })
+        //         .then(function(payload) {
+
+        //             var city = payload.location.city;
+
+        //             var country = payload.location.country.name;
+        //             var currency = payload.currency.code
+        //             console.log(city, country, currency)
+
+
+        //         });
+        //     // var cookieArr = document.cookie.split(";")
+        //     // for (var i = 0; i < cookieArr.length; i++) {
+        //     //     var cookiePair = cookieArr[i].split("=");
+        //     //     if (name == cookiePair[0].trim()) {
+        //     //         return decodeURIComponent(cookiePair[1]);
+        //     //     }
+        //     // }
+        //     // return null;
+        // }
+        // var cart = JSON.parse(getCookie('cart'))
+
+        var data = JSON.parse(getCookie('data'))
+        if (data == undefined) {
+            fetch('https://api.ipregistry.co/?key=xrtf5t6ngwxsjl6x')
+                .then(function(response) {
+                    return response.json();
+                })
+                .then(function(payload) {
+
+                    var city = payload.location.city;
+                    var call_code = payload.location.country.calling_code
+                    var country = payload.location.country.name;
+                    var currency = payload.currency.code
+
+                    data = {
+                        'country': country,
+                        'city': city,
+                        'currency': currency,
+                        'call_code': call_code,
+
+                    }
+
+                    document.cookie = 'data=' + JSON.stringify(data) + ";domain=;path=/"
+
+                });
+
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-circle"></div>
+        <div class="preloader-img">
+            <img src="{% static 'farm/img/core-img/leaf.png'%}">
+        </div>
+    </div>
+    {% include 'farms/farm_section_nav.html'%}
+    {% block content %} {% endblock %}
+
+
+    
+
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area bg-img " style="background-image: url(/static/farm/img/bg-img/3.jpg); ">
+    <!-- Main Footer Area -->
+    <div class="main-footer-area ">
+        <div class="container ">
+            <div class="row ">
+
+                <!-- Single Footer Widget -->
+                <div class="col-12 col-sm-6 col-lg-3 ">
+                    <div class="single-footer-widget ">
+                        <div class="footer-logo mb-30 ">
+                            <a href="# "><img src="{% static 'farm/logo2.png' %}" alt=" "></a>
+                        </div>
+                        <p>Lorem ipsum dolor sit samet, consectetur adipiscing elit. India situs atione mantor</p>
+                        <div class="social-info ">
+                            <a href="# "><i class="fa fa-facebook " aria-hidden="true "></i></a>
+                            <a href="# "><i class="fa fa-twitter " aria-hidden="true "></i></a>
+                            <a href="# "><i class="fa fa-google-plus " aria-hidden="true "></i></a>
+                            <a href="# "><i class="fa fa-instagram " aria-hidden="true "></i></a>
+                            <a href="# "><i class="fa fa-linkedin " aria-hidden="true "></i></a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</footer>
+
+<script src="{% static 'farm/js/jquery/jquery-2.2.4.min.js'%} "></script>
+<script src="{% static 'farm/js/bootstrap/popper.min.js'%} "></script>
+<script src="{% static 'farm/js/bootstrap/bootstrap.min.js'%} "></script>
+<script src="{% static 'farm/js/plugins/plugins.js'%} "></script>
+<script src="{% static 'farm/js/active.js'%} "></script>
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+<td colspan="11">
+    <div class="row" style="flex-wrap: nowrap;align-items: center;--bs-gutter-x: 0px;">
+        <div class="col">Action</div>
+        <div class="col">{{order.transaction_id}}</div>
+
+        <div class="col"><button type="button" class="btn btn-primary btn-rounded btn-fw" hx-post="{% url 'orderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"PAID"}'>Paid</button>            </div>
+
+        <div class="col"><button type="button" class="btn btn-success btn-rounded btn-fw" hx-post="{% url 'orderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"DELIVER"}'>Delivered</button>            </div>
+
+        <div class="col"><button type="button" class="btn btn-danger btn-rounded btn-fw" hx-post="{% url 'orderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-confirm="Are you sure?" hx-target="body" class="form-control" hx-vals='{"action": "stat","stut":"LOST"}'>cancelled</button></div>
+
+        <div class="col"><button type="button" class="btn btn-success btn-rounded btn-fw" hx-get="{% url 'ordersSubTracker' order.id %}" hx-trigger="click" hx-target="#data" class="form-control">Tracking</button></div>
+        <div class="col"><button type="button" class="btn btn-success btn-rounded btn-fw" hx-get="{% url 'supportTiketCreate' order.id %}" hx-trigger="click" hx-target="#data" class="form-control">Ticket</button></div>
+        <div class="col"><button type="button" class="btn btn-success btn-rounded btn-fw" hx-get="{% url 'ordersReview' order.id %}" hx-trigger="click" hx-target="#data" class="form-control">Review</button></div>
+        <div class="col">
+            <input hx-post="{% url 'orderAction' order.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="keyup changed delay:1000ms" hx-confirm="Are you sure?" hx-target="body" type="text" class="form-control" hx-vals='{"action": "note"}' name="note"
+                placeholder="Add Note" aria-label="Add Note">
+
+        </div>
+
+    </div>
+</td>

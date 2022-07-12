@@ -1,0 +1,70 @@
+{% load widget_tweaks %}
+<div classs="d-flex flex-row align-items-center mb-4" style="display:flex;flex-wrap: nowrap;flex-direction: row;">
+    <div class="col-md-4">
+        <span><h4>{{category.name}}</h4></span>
+        <span><h5>{{category.category}}</h5></span>
+
+    </div>
+    <div class="col-md-6">
+
+        <img src="{{category.photo.url}}" class="rounded-circle mt-4" alt="" style="max-width: 50%;margin:0px;float:right;">
+
+    </div>
+
+</div>
+<div class="container" style="width:600px; margin: 0px;">
+    <form method="post" action="{% url 'reg_details' category.id %}"> {% csrf_token %}
+        <table class="table table-borderless " style="width: 600px;">
+
+            <tbody>
+
+                <tr>
+                    <td>
+                        <label>Sawing Hole Quantity </label>
+                        <div style="float: right;">
+                            <a id="popoverquantity" class="btn" data-content="Add Sowing hole number for this growing - Required" rel="popover" data-placement="bottom" data-trigger="hover"><i class="fas fa-info"></i></a>
+                        </div>
+                        {% render_field form.sowing_hole class="form-control" type="number" min="0" placeholder=" Required Field" %}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label>Start Sowing Date</label>
+                        <div style="float: right;">
+                            <a id="popoverdue_date" class="btn" data-content="Add Start Sowing Date - Required " rel="popover" data-placement="bottom" data-trigger="hover"><i class="fas fa-info"></i></a>
+                        </div>
+                        {% render_field form.sowing_date class="form-control" type="date" min="0" placeholder=" Required Field" %}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label>Expecating Harvest Date</label>
+                        <div style="float: right;">
+                            <a id="popoverdueharv" class="btn" data-content="Add Expecating Harvest Date Approximately - Required" rel="popover" data-placement="bottom" data-trigger="hover"><i class="fas fa-info"></i></a>
+                        </div>
+                        {% render_field form.harvest_date class="form-control" type="date" min="0" placeholder=" Required Field" %}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                            <button type="submit" class="btn btn-success rounded-pill">Submit</button>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+    </form>
+
+</div>
+<script>
+    $('#popoverdueharv').popover();
+    $('#popoverdue_date').popover();
+    $('#popoverquantity').popover();
+</script>

@@ -1,0 +1,22 @@
+<tr style="text-align: center;">
+    <form id="form" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-post="{% url 'mapZoneAction' zones.id %}" hx-target="#data" hx-include="closest tr">
+        <td>Action</td>
+        <td>{{zones.country}}</td>
+        <td>{{zones.city}} </td>
+        <td>{{zones.zone}} </td>
+        <td><input type="text" name="trader_percent" class="form-control" value="{{zones.trader_percent}}" style="padding: 0px;"></td>
+        <td><input type="text" name="farm_percent" class="form-control" value="{{zones.farm_percent}}" style="padding: 0px;"></td>
+        <td><input type="text" name="customer_percent" class="form-control" value="{{zones.customer_percent}}" style="padding: 0px;"></td>
+        <td><input type="text" name="shipping" class="form-control" value="{{zones.shipping}}" style="padding: 0px;"></td>
+        <td><input type="text" name="duedate" class="form-control" value="{{zones.duedate}}" style="padding: 0px;"></td>
+        <td><input type="text" name="lat_greater" class="form-control" value="{{zones.lat_greater}}" style="padding: 0px;"></td>
+        <td><input type="text" name="lat_lower" class="form-control" value="{{zones.lat_lower}}" style="padding: 0px;"></td>
+        <td><input type="text" name="long_greater" class="form-control" value="{{zones.long_greater}}" style="padding: 0px;"></td>
+        <td><input type="text" name="long_lower" class="form-control" value="{{zones.long_lower}}" style="padding: 0px;"></td>
+        <td>{{zones.get_trdcont}}</td>
+        <td> <button hx-trigger="click" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-post="{% url 'mapZoneAction' zones.id %}" hx-include="closest tr" hx-target="body" class="btn btn-primary btn-rounded btn-fw">
+            Submit
+        </button></td>
+
+    </form>
+</tr>

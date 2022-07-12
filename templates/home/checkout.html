@@ -1,0 +1,302 @@
+{% extends 'home/main.html' %} {% load static %} {% block content %} {% load widget_tweaks %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+
+<section class="hero hero-normal">
+    {% include 'home/dep_nav.html'%}
+</section>
+
+
+
+<section class="breadcrumb-section set-bg" data-setbg="{% static 'img/breadcrumb.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Checkout</h2>
+                    <div class="breadcrumb__option">
+                        <a href="{% url 'home' %}">Home</a>
+                        <span>Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="checkout spad">
+    <div class="container">
+
+        <div class="checkout__form">
+            <h4>Billing Details</h4>
+            {% if request.user.is_authenticated %}
+            <form id="form"> {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="row">
+                            <table class="table  table-borderless">
+
+                                <tbody>
+                                    <tr>
+
+                                        <td colspan="2">
+                                            <div class="col-lg-8">
+                                                <div class="checkout__input">
+                                                    <span><h5 class="text-muted font-weight-bolder ">Full Name :  {{request.user.get_full_name|title}}</h5></span>
+
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            <div class="col-lg-8">
+                                                <div class="checkout__input">
+                                                    <span><h5 class="text-muted font-weight-bolder">Email : {{request.user.email}}</h5></span>
+
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-lg-8">
+                                                <div class="checkout__input">
+                                                    <span><h5 class="text-muted font-weight-bolder">Phone : {{request.user.userprofile.phone}}</h5></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+                                        <td colspan="2">
+                                            <div class="col-lg-8">
+                                                <div class="checkout__input">
+                                                    <span><h5 class="text-muted font-weight-bolder">Address : {{request.user.userprofile.address}}</h5></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+
+                                    </tr>
+                                    <tr>
+
+                                        <td>
+                                            <div class="col-lg-8">
+                                                <div class="checkout__input">
+                                                    <span><h5 class="text-muted font-weight-bolder">Town/City : {{request.user.userprofile.city}}</h5></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="col-lg-8">
+                                                <div class="checkout__input">
+                                                    <span><h5 class="text-muted font-weight-bolder">Country/State: {{request.user.userprofile.country}}</h5></span>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+
+
+                                        <td colspan="2">
+                                            <div class="col-lg-8">
+                                                <div class="checkout__input">
+                                                    <p>
+                                                        <h5 class="font-weight-bolder">Order Notes</h5>
+                                                    </p>
+                                                    <input type="text" id="order-note" class="form-control" placeholder="Notes about your order, e.g. special notes for delivery.">
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4>Your Order</h4>
+                            <div class="checkout__order__products">Products <span>Total</span>
+                                <ul>{% for i in items%}
+                                    <li>{{i.product.name}} <span>{{i.price.symbl|upper}} {{i.get_total}}</span></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="checkout__order__subtotal" style="margin-bottom: 0px;">Subtotal <span>{{order.symbl}} {{order.get_cart_sub_total}}</span></div>
+                            <div class="checkout__order__subtotal" style="margin-bottom: 0px;">Discount <span></span></div>
+                            <div class="checkout__order__subtotal" style="margin-bottom: 0px;">Shipping <span>{{order.symbl}} {{order.shipping}}</span></div>
+                            <div class="checkout__order__total">Total <span>{{order.symbl}} {{order.get_cart_total}}</span></div>
+
+                            <button type="submit" id="form-button" class="site-btn">PLACE ORDER</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% else %}
+            <form method="post"> {% csrf_token %}
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>First Name<span>*</span></p>
+                                    {% render_field form.first_name class="form-control" type="text" placeholder="First Name" %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Last Name<span>*</span></p>
+                                    {% render_field form.last_name class="form-control" type="text" placeholder="Last Name" %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Email<span>*</span></p>
+                                    {% render_field form.email class="form-control" type="email" placeholder="E-mail" hx-post="checkemail/" hx-trigger="keyup" hx-target="#emailerror" hx-swap="outerHTML" %}
+                                    <div id="emailerror"></div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Phone<span>*</span></p>
+                                    {% render_field form_profile.phone class="form-control" type="number" id="phone" min="0" placeholder="Mobile Number" %}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="checkout__input">
+                            <p>Address<span>*</span></p>
+                            {% render_field form_profile.address class="form-control" rows="2" placeholder="Please Add Delivery Address" %}
+                        </div>
+                        <div class="checkout__input">
+                            <p>Town/City<span>*</span></p>
+                            {% render_field form_profile.city class="form-control" type="text" placeholder="Please Add City" %}
+                        </div>
+                        <div class="checkout__input">
+                            <p>Country/State<span>*</span></p>
+                            {% render_field form_profile.country class="form-control" type="text" placeholder="Please Add Country" %}
+                        </div>
+                        <div class="checkout__input">
+                            <p>Postcode / ZIP<span>*</span></p>
+                            <input type="text" class="form-control" placeholder="Postal Code" />
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Password<span>*</span></p>
+                                    {% render_field form.password1 class="form-control" type="password" placeholder="Password" %}
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Repeat your password<span>*</span></p>
+                                    {% render_field form.password2 class="form-control" type="password" placeholder="Repeat your password" %}
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="checkout__input">
+
+                            <span style="color: red;"> Any special Note/request can be add after placing the order </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4>Your Order</h4>
+                            <div class="checkout__order__products">Products <span>Total</span></div>
+                            <ul>{% for i in items%}
+                                <li>{{i.product.name}} <span>{{i.price.symbl|upper}} {{i.get_total}}</span></li>
+                                {% endfor %}
+                            </ul>
+                            <div class="checkout__order__subtotal">Subtotal <span>{{order.get_cart_total}}</span></div>
+                            <div class="checkout__order__total">Total <span>{{order.get_cart_total}}</span></div>
+
+                            <button type="submit" class="site-btn">PLACE ORDER</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% endif %}
+
+        </div>
+    </div>
+</section>
+<!-- <script>
+    fetch('https://api.ipregistry.co/?key=xrtf5t6ngwxsjl6x')
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(payload) {
+
+            document.getElementById("id_city").value = payload.location.city;
+            document.getElementById("id_country").value = payload.location.country.name;
+
+        });
+</script> -->
+
+<script>
+    var total = '{{order.get_cart_total}}'
+
+
+    var form = document.getElementById('form')
+
+    // form.addEventListener('submit', function(e) {
+    //     e.preventDefault()
+    //     console.log('form submitted')
+    //     document.getElementById('form-button').classList.add('d-none')
+    //     document.getElementById('payment-option').classList.remove('d-none')
+    // })
+    if (user != 'AnonymousUser') {
+        document.getElementById('form-button').addEventListener('click', function(e) {
+            submitFormData()
+        })
+    }
+
+    function submitFormData() {
+        console.log('payment done')
+        var note = document.getElementById('order-note').value;
+        console.log(note)
+        var userFormData = {
+            'note': note,
+            'total': total,
+        }
+        var url = '/process_Order/'
+        fetch(url, {
+                method: 'POST',
+                headers: {
+                    'content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: JSON.stringify({
+                    'form': userFormData
+                }),
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log('success', data)
+                    // alert('Transaction completed');
+                window.location.href = "{% url 'paymentOrder' %}"
+
+
+            })
+    }
+</script>
+{% endblock %}

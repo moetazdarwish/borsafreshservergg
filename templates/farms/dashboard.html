@@ -1,0 +1,32 @@
+<!doctype html> {% extends 'home/main.html' %} {% load static %} {% block content %}
+<html lang="en">
+
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+            {% include 'farms/farm_nav.html' %}
+            <main class="col-md-10 px-md-4">
+                <div class="container" style="margin: 25px;width:600px">
+
+                    <h2>Welcome</h2>
+                </div>
+                <div class="table-responsive">
+                    <h5> Your Request is Subject to approvel within next 2 Hours Max </h5>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+{% endblock %}

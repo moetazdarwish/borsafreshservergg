@@ -1,0 +1,172 @@
+<!doctype html> {% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+
+{% load widget_tweaks %}
+<style>
+    .dropbtn {
+        color: white;
+        padding: 10px;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dropbtn:hover,
+    .dropbtn:focus {
+        background-color: #04aa41;
+    }
+    
+    #myInput {
+        box-sizing: border-box;
+        background-image: url('searchicon.png');
+        background-position: 14px 12px;
+        background-repeat: no-repeat;
+        font-size: 16px;
+        padding: 14px 20px 12px 45px;
+        border: none;
+        border-bottom: 1px solid rgb(173, 50, 50);
+    }
+    
+    #myInput:focus {
+        outline: 3px solid rgb(221, 221, 221);
+    }
+    
+    .dropdown {
+        position: relative;
+    }
+    
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        min-width: 230px;
+        overflow: auto;
+        border: 1px solid #ddd;
+        z-index: 1;
+    }
+    
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown a:hover {
+        background-color: #ddd;
+    }
+    
+    .show {
+        display: block;
+    }
+</style>
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+            {% include 'farms/farm_nav.html' %}
+            <main class="col-md-10 ms-sm-auto px-md-4">
+                <div class="container" style="margin: 25px;">
+                    <h2>Add Product</h2>
+                </div>
+
+                <div class="container" style="margin: 25px;">
+                    <div class="d-flex flex-row align-items-center mb-4" style="width: 600px;">
+
+
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="dropdown">
+                                <button onclick="myFunction()" class="dropbtn btn btn-success">Select Product</button>
+                                <div id="myDropdown" class="dropdown-content">
+                                    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()"> {% for i in category %}
+                                    <a onclick="myclik()" hx-get="{% url 'get_item_details' i.id  %}" hx-target="#test" hx-trigger="click" value="{{i.id}}">{{i.name}}</a> {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-outline flex-fill mb-0">
+                            <div class="dropdown">
+                                <button onclick="myProInfo()" class="dropbtn btn btn-success"> Product Info</button>
+                                <div id="myDropInfo" class="dropdown-content">
+                                    <input type="text" placeholder="Search.." id="myInputInfo" onkeyup="filterFunctionInfo()"> {% for i in category %}
+                                    <a onclick="myclikInfo()" hx-get="{% url 'getProductInfo' i.id  %}" hx-target="#test" hx-trigger="click" value="{{i.id}}">{{i.name}}</a> {% endfor %}
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="test">
+
+
+                    </div>
+
+
+
+                </div>
+
+
+            </main>
+        </div>
+    </div>
+
+
+</body>
+
+
+<script>
+    function myProInfo() {
+        document.getElementById("myDropInfo").classList.toggle("show");
+    }
+
+    function myclikInfo() {
+        document.getElementById("myDropInfo").classList.remove("show");
+    }
+
+    function filterFunctionInfo() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInputInfo");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropInfo");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    }
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function myclik() {
+        document.getElementById("myDropdown").classList.remove("show");
+    }
+
+    function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            txtValue = a[i].textContent || a[i].innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {
+                a[i].style.display = "none";
+            }
+        }
+    }
+</script> {% endblock %}

@@ -1,0 +1,26 @@
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>
+                File
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in fils %} {% if i.files.url %}
+        <tr class="table-info">
+            <td>
+                {{i.title|safe}}
+            </td>
+            <td>
+                <a href="{{i.files.url}}" download>Download</a>
+
+            </td>
+
+        </tr>
+        {% endif %} {% endfor %}
+
+    </tbody>
+</table>

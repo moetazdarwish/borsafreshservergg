@@ -1,0 +1,5 @@
+
+<ul>
+    <li><a href="{% url 'cart' %}"><i class="fas fa-shopping-cart" ></i><span hx-get="{% url 'notif' %}">{{cartItems}}</span></a></li>
+</ul>
+<div class="header__cart__price">Item: <span id="curr" ></span> <span>{{order.get_cart_sub_total}} {{order.symbl}}</span></div>

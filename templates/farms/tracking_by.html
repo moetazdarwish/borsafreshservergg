@@ -1,0 +1,45 @@
+<!doctype html> {% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+            {% include 'farms/farm_nav.html' %}
+            <main class="col-md-10 ms-sm-auto px-md-4">
+                <div class="container" style="margin: 25px;width:600px">
+
+                    <h2>Tracking</h2>
+                </div>
+                <div class="" id="pdtails">
+                    <div class="card" style="width: 41rem;">
+                        <form method="post"  style="margin: 10px;"> {% csrf_token %}
+                            <div class="d-flex flex-row align-items-center mb-4" style="margin: 10px;">
+                    
+                                <div class="form-outline flex-fill mb-0">
+                                    <input type="number" class="form-control" min="1" placeholder="Tracking Number" aria-label="Tracking">
+                    
+                                </div>
+                    
+                            </div>
+                            <button class="btn btn-success rounded-pill" type="submit">Submit Offer</button>
+                        </form>
+                    </div>
+                    
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+{% endblock %}

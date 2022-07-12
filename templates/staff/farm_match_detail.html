@@ -1,0 +1,28 @@
+<style>
+    div.gallery {
+        margin: 5px;
+        border: 1px solid #ccc;
+        float: left;
+        width: 180px;
+    }
+    
+    div.gallery img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+<div class="container" style="margin-bottom:20px;">
+    <a class="btn btn-primary rounded-pill" href="{{ request.META.HTTP_REFERER }}">Back</a>
+    <a class="btn btn-primary rounded-pill" href="{% url 'editMatchPoint' get_list.id %}">Edit</a> 
+    <a class="btn btn-danger rounded-pill float-right" href="{% url 'deleteMatchPoint' get_list.id %}">Delete</a>
+</div>
+<div classs="d-flex flex-row align-items-center mb-4" style="display:flex;flex-wrap: nowrap;flex-direction: row;">
+    <div class="col-md-8">
+       
+        <span><h5>Farm Name : {{get_list.farm}}</span>    <a class="btn btn-secondary rounded-pill" hx-get="{% url 'getFarmDetails' get_list.farm.id %}" hx-trigger="click" hx-target="#plist"><i class="fal fa-info"></i></a></h5>
+        <span><h5>Point : {{get_list.name}}</span> <a class="btn btn-secondary rounded-pill" hx-get="{% url 'getPointDetails' get_list.name.id %}" hx-trigger="click" hx-target="#plist"><i class="fal fa-info"></i></a></h5>
+        
+
+    </div>
+    <div class="" id="plist"></div>
+</div>

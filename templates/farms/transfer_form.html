@@ -1,0 +1,17 @@
+ {% load widget_tweaks %}
+<form method="post" action="{% url 'transferRequest' %}"> {% csrf_token %}
+    <div class="container">
+        <div class="d-flex flex-row align-items-center mb-4">
+            <i class="fad fa-sack-dollar fa-lg me-3 fa-fw fa-2x"></i>
+
+            <div class="input-group mb-3 form-outline flex-fill mb-0">
+                {% render_field form.amount class="form-control" type="number" id="phone" min="0" placeholder="Mobile Number - Required" required="" %}
+
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin: 25px;"> Transfer</button>
+
+    </div>
+</form>

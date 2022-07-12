@@ -1,0 +1,24 @@
+<td colspan="8">
+    <div class="row" style="flex-wrap: nowrap; --bs-gutter-x: 0;
+    --bs-gutter-y: 0;flex-direction: row;align-content: center;justify-content: space-around;
+    align-items: center;">
+        <div class="col">
+            <span style="text-align: center;">{{user.name.get_full_name|title}}</span>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-rounded" hx-post="{% url 'userTraderNewApprove' user.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="body" class="form-control">Approve</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-danger btn-rounded" hx-post="{% url 'userTraderNewDecline' user.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="body" class="form-control">Hold</button>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-rounded" hx-post="{% url 'supportTiketUserCreate' user.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="#data" class="form-control">Ticket</button>
+        </div>
+
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-rounded" hx-post="{% url 'userSubMSG' user.id %}" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' hx-trigger="click" hx-target="#data" class="form-control">MSG</button>
+        </div>
+
+
+    </div>
+</td>

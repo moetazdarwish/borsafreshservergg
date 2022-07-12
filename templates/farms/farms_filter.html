@@ -1,0 +1,68 @@
+<table style="margin-left: 5px;">
+    <tr>
+        {% for item in advs_list %}
+        <td>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <p><img class=" img-fluid" src="{{item.photo.url}}" alt="card image">
+                                </p>
+                                <h4 class="card-title">{{item.name|title}}</h4>
+
+                                <p class="card-text">
+                                    {{item.city|title}}-{{item.country|title}}</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="flip-card-back">
+                        <div class="card">
+                            <div class="card-body text-center ">
+                                <p class="text-muted font-weight-bolder " style="text-align: start; margin-bottom: 10px; font-size:14;">
+                                    {{item.text|title}}</p>
+                                <p class="card-text font-weight-bolder" style="text-align: start; margin-bottom: 10px;font-size:14;">
+                                    Tel : {{item.phone}}</p>
+                                <p class="card-text font-weight-bolder" style="text-align: start; margin-bottom: 10px;font-size:14;">
+                                    Address : {{item.address |title}}</p>
+                                <p class="card-text font-weight-bolder" style="text-align: start; margin-bottom: 10px;font-size:14;">
+                                    Area : {{item.area| title}}</p>
+
+
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a href="{{item.target_url}}" class="btn btn-primary rounded-pill"><i
+                                                class="fal fa-location-arrow"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </td>
+        {% if forloop.last %}
+    </tr>
+    <tr>
+        {% else %} {% if forloop.counter|divisibleby:"3" %}
+    </tr>
+    <tr>
+        {% endif %} {% endif %} {% endfor %}
+    </tr>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center ">  {% if advs_list.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page=1" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ advs_list.previous_page_number }}">Previous</a></li> {% endif %}
+      <span class="current" style="padding-left:15px;padding-right:15px;">
+        Page {{ advs_list.number }} of {{ advs_list.paginator.num_pages }}.
+    </span>
+      {% if advs_list.has_next %}
+      <li class="page-item"><a  class="page-link" href="?page={{ advs_list.next_page_number }}">Next</a></li>
+      <li class="page-item"><a class="page-link" href="?page={{ advs_list.paginator.num_pages }}" aria-label="last"><span aria-hidden="true">&raquo;</span></a></li>
+      {% endif %}
+    </ul>
+  </nav>

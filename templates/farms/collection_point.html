@@ -1,0 +1,107 @@
+{% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+            {% include 'farms/farm_nav.html' %}
+            <main class="col-md-12 ms-sm-auto col-lg-8 px-md-4">
+                <div class="container" style="margin: 25px">
+
+                    <h2>Collection Points List</h2>
+                    <h5 id="conf"></h5>
+
+
+                </div>
+                <div id="wreqst">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Point Name</th>
+                                <th scope="col">Start Time</th>
+                                <th scope="col">Close Time</th>
+
+                                <th scope="col">Address</th>
+                                <th scope="col">Select</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in get_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+
+                                <td>{{i.name.get_full_name}}</td>
+                                <td>{{i.point_name|title}}</td>
+
+                                <td>{{i.start_time}}</td>
+                                <td>{{i.end_time}}</td>
+
+
+                                <td>
+                                    <button type="button" class="btn btn-primary rounded-pill" data-toggle="modal" data-target="#c{{i.id}}">
+                                        <i class="far fa-map-marker-alt"></i>
+                                  </button>
+                                    <div class="modal fade" id="c{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">{{i.point_name|title}}</h5>
+
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="modal-body">
+                                                        <div class="checkout__input">
+                                                            <span><h5 class="text-muted ">Phone:  {{i.phone}}</h5></span>
+
+                                                        </div>
+                                                        <div class="checkout__input">
+                                                            <span><h5 class="text-muted ">Address:  {{i.address}}</h5></span>
+
+                                                        </div>
+                                                        <div class="checkout__input">
+                                                            <span><h5 class="text-muted ">Area / District / Postal Code:  {{i.area}}</h5></span>
+
+                                                        </div>
+                                                        <div class="checkout__input">
+                                                            <span><h5 class="text-muted  ">City:  {{i.city}}</h5></span>
+
+                                                        </div>
+                                                        <div class="checkout__input">
+                                                            <span><h5 class="text-muted">Country:  {{i.country}}</h5></span>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td> <button class="btn btn-primary rounded-pill" hx-get="{% url 'selectPoint' i.id %}" hx-trigger="click" hx-target="#conf"><i class="fad fa-check"></i>  Select</button> </td>
+                            </tr>{% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+</body>
+
+<script>
+    $('#order_note').popover();
+</script>
+{% endblock %}

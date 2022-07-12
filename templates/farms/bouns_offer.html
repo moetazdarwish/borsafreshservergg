@@ -1,0 +1,14 @@
+{% load widget_tweaks %}
+<div class="card" style="width: 41rem;">
+    <form method="post" action=" {% url 'submitBounsOffer' order_list.id %}" style="margin: 10px;"> {% csrf_token %}
+        <div class="d-flex flex-row align-items-center mb-4" style="margin: 10px;">
+
+            <div class="form-outline flex-fill mb-0">
+                {% render_field form.offer_price class="form-control" type="number" min="1" %}
+
+            </div>
+
+        </div>
+        <button class="btn btn-success rounded-pill" type="submit">Submit Offer</button>
+    </form>
+</div>

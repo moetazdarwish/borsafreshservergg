@@ -1,0 +1,73 @@
+{% extends 'dashboard/base.html' %} {% load static %} {% block contain %}
+
+<div class="card">
+    <div class="card-body">
+        <div style="margin-bottom: 10px; float: right;">
+            <a href="{% url 'mapadd' %}" class="btn btn-success btn-rounded btn-fw" style="margin-right: 10px;">Add</a>
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-rounded btn-fw" style="margin-right: 20px;">BACK</a>
+
+        </div>
+        <h4 class="card-title">Country List</h4>
+
+        <div class="table-responsive pt-3 " id="data">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="text-align: center;">
+
+                        <th>Country</th>
+                        <th>Language</th>
+                        <th>Currency</th>
+                        <th>Tax</th>
+                        <th>Tax Rate</th>
+                        <th>Map</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form action="{% url 'mapadd' %}" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+
+                        <tr style="text-align: center;">
+
+                            <td><input type="text" name="country" class="form-control" placeholder="Country" style="padding: 0px;" required></td>
+                            <td><input type="text" name="lang" class="form-control" placeholder="Language" style="padding: 0px;" required></td>
+                            <td><input type="text" name="symbl" class="form-control" placeholder="Currency" style="padding: 0px;" required></td>
+
+                            <td><label class="toggle-switch">
+                                <input type="checkbox" id="testName"  name="tax" value="True">
+                                
+                                <span class="toggle-slider round"></span>
+                              </label>
+                            </td>
+                            <td><input type="text" name="tax_rate" class="form-control" placeholder="Rate" style="padding: 0px;" required></td>
+                            <td>
+                                <input type="file" name="file" class="form-control" style="padding: 0px;" required>
+
+                            </td>
+
+                            <td>
+                                <button class="btn btn-outline-secondary btn-rounded btn-icon" type="submit">
+                                <i class="mdi mdi-database-plus icon-md text-danger"></i>
+                            </button>
+
+                            </td>
+                        </tr>
+                    </form>
+                </tbody>
+            </table>
+
+        </div>
+
+
+
+    </div>
+
+</div>
+<script>
+    form.addEventListener('submit', () => {
+                if (document.getElementById("testName").checked) {
+                    document.getElementById('testNameHidden').disabled = true;
+                }
+            }
+</script>
+{% endblock %}

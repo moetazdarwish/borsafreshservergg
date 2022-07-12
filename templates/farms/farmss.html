@@ -1,0 +1,187 @@
+{% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+<style>
+    body,
+    html {
+        height: 100%;
+        margin: 0;
+    }
+    
+    .bg {
+        /* The image used */
+        /* Full height */
+        height: 100%;
+        /* Center and scale the image nicely */
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .flip-card {
+        background-color: transparent;
+        width: 300px;
+        height: 400px;
+        perspective: 1000px;
+        position: relative;
+        z-index: 2;
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+    
+    .flip-card-inner {
+        position: relative;
+        text-align: center;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+    }
+    
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+    
+    .flip-card-front,
+    .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+    }
+    
+    .card-body img {
+        width: 200px;
+        height: 200px;
+        border-radius: 100%;
+    }
+    
+    .flip-card-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: white;
+        -webkit-transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        -o-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+        -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        transform: rotateY(180deg);
+    }
+    
+    .frontside .card,
+    .backside .card {
+        min-height: 312px;
+    }
+    
+    .card-title {
+        color: #007b5e !important;
+    }
+</style>
+
+<div class="container" style="margin-left: 5px;">
+    <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+        {% include 'farms/side_nave.html' %}
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-lg-11">
+                    <div class="section-title">
+                        <h2>Farms Supplies</h2>
+                    </div>
+                    <div class="featured__controls">
+                        <ul>
+                            <li onclick="newloc()">All</li>
+                            <li data-filter=".oranges" hx-get="{% url 'farmsFilter' %}" hx-trigger="click" hx-target="#supplies" hx-vals='{"myVal": "Seeds"}'>Seeds</li>
+                            <li data-filter=".fresh-meat" hx-get="{% url 'farmsFilter' %}" hx-trigger="click" hx-target="#supplies" hx-vals='{"myVal": "System"}'>System</li>
+                            <li data-filter=".vegetables" hx-get="{% url 'farmsFilter' %}" hx-trigger="click" hx-target="#supplies" hx-vals='{"myVal": "Nursery"}'>Nursery</li>
+                            <li data-filter=".fastfood" hx-get="{% url 'farmsFilter' %}" hx-trigger="click" hx-target="#supplies" hx-vals='{"myVal": "Supplements"}'>Supplements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div  id="supplies">
+                <div class="col-lg-11">
+                <table style="margin-left: 5px;">
+                    <tr>
+                        {% for item in advs_list %}
+                        <td>
+                            <div class="flip-card">
+                                <div class="flip-card-inner">
+                                    <div class="flip-card-front">
+                                        <div class="card">
+                                            <div class="card-body text-center">
+                                                <p><img class=" img-fluid" src="{{item.photo.url}}" alt="card image">
+                                                </p>
+                                                <h4 class="card-title">{{item.name|title}}</h4>
+
+                                                <p class="card-text">
+                                                    {{item.city|title}}-{{item.country|title}}</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="flip-card-back">
+                                        <div class="card">
+                                            <div class="card-body text-center ">
+                                                <p class="text-muted font-weight-bolder " style="text-align: start; margin-bottom: 10px; font-size:14;">
+                                                    {{item.text|title}}</p>
+                                                <p class="card-text font-weight-bolder" style="text-align: start; margin-bottom: 10px;font-size:14;">
+                                                    Tel : {{item.phone}}</p>
+                                                <p class="card-text font-weight-bolder" style="text-align: start; margin-bottom: 10px;font-size:14;">
+                                                    Address : {{item.address |title}}</p>
+                                                <p class="card-text font-weight-bolder" style="text-align: start; margin-bottom: 10px;font-size:14;">
+                                                    Area : {{item.area| title}}</p>
+
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <a href="{{item.get_absolute_url}}" class="btn btn-primary rounded-pill"><i
+                                                                class="fal fa-location-arrow"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
+                        {% if forloop.last %}
+                    </tr>
+                    <tr>
+                        {% else %} {% if forloop.counter|divisibleby:"3" %}
+                    </tr>
+                    <tr>
+                        {% endif %} {% endif %} {% endfor %}
+                    </tr>
+                </table>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center ">  {% if advs_list.has_previous %}
+                      <li class="page-item"><a class="page-link" href="?page=1" aria-label="First"><span aria-hidden="true">&laquo;</span></a></li>
+                      <li class="page-item"><a class="page-link" href="?page={{ advs_list.previous_page_number }}">Previous</a></li> {% endif %}
+                      <span class="current" style="padding-left:15px;padding-right:15px;">
+                        Page {{ advs_list.number }} of {{ advs_list.paginator.num_pages }}.
+                    </span>
+                      {% if advs_list.has_next %}
+                      <li class="page-item"><a  class="page-link" href="?page={{ advs_list.next_page_number }}">Next</a></li>
+                      <li class="page-item"><a class="page-link" href="?page={{ advs_list.paginator.num_pages }}" aria-label="last"><span aria-hidden="true">&raquo;</span></a></li>
+                      {% endif %}
+                    </ul>
+                  </nav>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script>
+    function newloc() {
+        window.location.href = '{% url "farms" %}';
+
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,66 @@
+<div class="card">
+   
+    <div class="card-body">
+      
+     
+        <blockquote class="blockquote blockquote-warning">
+            <p>{{order.note}}</p>
+            
+          </blockquote>
+        
+      <div class="table-responsive">
+        <div style="margin-bottom: 10px; float: right;">
+      
+          <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-rounded btn-fw">BACK</a>
+      </div>
+        <table class="table">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Selling Price</th>
+                <th>Vendor Price</th>
+                <th>Quantity</th>
+                <th>Weight</th>
+                <th>Scale</th>
+                <th>Box</th>
+                <th>Bulk</th>
+                <th>RTE</th>
+                <th>Hydro</th>
+                <th>date</th>
+                <th>Status</th>
+                <th>Trader</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in sub_order %}
+              <tr id="tr{{i.id}}">
+                <td>{{i.product.name}}</td>
+                <td>{{i.buy_price}}</td>
+                <td>{{i.supplier_price}}</td>
+                <td>{{i.quantity}}</td>
+                <td>{{i.weight}}</td>
+                <td>{{i.scale}}</td>
+                <td>{{i.is_box}}</td>
+                <td>{{i.is_bulk}}</td>
+                <td>{{i.is_mix}}</td>
+                <td>{{i.hydro}}</td>
+                <td>{{i.create_date}}</td>
+                <td>{{i.status}}</td>
+                <td><button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderTraderDetails' %}" hx-trigger="click" hx-target="#data" hx-vals='{"myid": "{{i.trader.id}}"}'>
+                    <i class="mdi mdi-account-card-details icon-md text-danger"></i>
+                    </button></td>
+                    <td>
+                        <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'subOrderAction' i.id %}" hx-trigger="click" hx-target="#tr{{i.id}}" hx-swap="outerHTML" hx-vals='{"myid": "{{i.id}}"}'>
+                        <i class="mdi mdi-routes icon-md text-danger"></i>
+                        </button>
+                    </td>
+                
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>

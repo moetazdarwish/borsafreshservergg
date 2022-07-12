@@ -1,0 +1,28 @@
+<table class="table table-bordered">
+    <thead>
+        <tr style="text-align: center;">
+            <th>#</th>
+            <th>Trader</th>
+            <th>Farm</th>
+            <th>Details</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in zones %}
+        <tr style="text-align: center;" id="tr{{i.id}}">
+            <td>{{forloop.counter}}</td>
+            <td>{{i.user.trader_name}} </td>
+            <td>{{i.user.farm_name}} </td>
+           
+            
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderTraderDetails' %}" hx-trigger="click" hx-target="#data" hx-vals='{"myid": "{{i.user.id}}"}'>
+                <i class="mdi mdi-account-card-details icon-md text-danger"></i>
+                </button>
+            </td>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

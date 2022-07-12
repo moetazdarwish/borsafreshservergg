@@ -1,0 +1,71 @@
+<div class="row col-lg-12">
+    <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Details</h4>
+
+                <div class="table-responsive">
+                    <table class="table">
+
+                        <tbody>
+                            <tr>
+                                <td>{{ads.name}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ads.phone}}</td>
+                                <td>{{ads.email}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ads.postal_code}}</td>
+                                <td>{{ads.area}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ads.address}}</td>
+                            </tr>
+                            <tr>
+                                <td>{{ads.city}}</td>
+                                <td>{{ads.country}}</td>
+
+                            </tr>
+                            <tr>
+                                <td>Lattitude : {{ads.lat}}</td>
+                                <td>Longitude : {{ads.long}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Ad</h4>
+
+                <img src="{{ads.logo.url}}" alt="image" style="height: 70px;width:70px; table-layout: fixed;">
+
+                <div class="table-responsive">
+                    <table class="table table-hover" style="width: 310px;">
+
+                        <tbody>
+                            <tr>
+                                <td>{{ads.msg}}</td>
+
+                            </tr>
+                            <tr>
+                                <td style="word-wrap: break-word;">{{ads.link}}</td>
+
+                            </tr>
+                            <tr>
+                                <td>{{ads.due}}</td>
+                                <td>{{ads.type}}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

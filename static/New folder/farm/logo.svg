@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.1"
+   id="svg824"
+   width="130.5"
+   height="29.25"
+   viewBox="0 0 130.5 29.25"
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="C:\Users\info\Documents\python\hydrofresh\hydrofresh\static\farm\logo2.png"
+   inkscape:export-xdpi="90.731712"
+   inkscape:export-ydpi="90.731712"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs828">
+    <linearGradient
+       id="linearGradient12294"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#00ff00;stop-opacity:1;"
+         offset="0"
+         id="stop12292" />
+    </linearGradient>
+    <rect
+       x="16.870722"
+       y="48.131179"
+       width="138.93536"
+       height="45.153992"
+       id="rect4890" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview826"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="5.7002018"
+     inkscape:cx="40.174016"
+     inkscape:cy="5.9647011"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g830" />
+  <g
+     inkscape:groupmode="layer"
+     inkscape:label="Image"
+     id="g830">
+    <text
+       xml:space="preserve"
+       id="text4888"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:22px;line-height:1.25;font-family:'Segoe Fluent Icons';-inkscape-font-specification:'Segoe Fluent Icons';white-space:pre;shape-inside:url(#rect4890);opacity:0.870647;fill:#008073;fill-opacity:1;stroke:none"
+       transform="matrix(1.1857413,0,0,1.2012701,-20.720058,-64.557289)"
+       inkscape:export-filename="C:\Users\info\Documents\python\hydrofresh\hydrofresh\static\farm\logo2.png"
+       inkscape:export-xdpi="142.629"
+       inkscape:export-ydpi="142.629"><tspan
+         x="16.871094"
+         y="72.880859"
+         id="tspan22798"><tspan
+           style="fill:#ececec"
+           id="tspan22794">Vege</tspan><tspan
+           style="fill:#00ff00"
+           id="tspan22796">Fresh</tspan></tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+<table class="table table-bordered">
+    <thead>
+        <tr style="text-align: center;">
+            <th>#</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Country</th>
+          
+            <th>Details</th>
+           
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in product %}
+        <tr style="text-align: center;" >
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.category.category_name}} </td>
+            <td>{{i.country}} </td>
+
+     
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'productCatgDetail' i.id %}" hx-trigger="click" hx-target="#data" >
+                    <i class="mdi mdi-information-outline icon-md text-danger"></i>
+                  </button>
+
+
+            </td>
+          
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,54 @@
+<style>
+    .nav-item .fal {
+        transition: all 1s;
+        float: left
+    }
+    
+    .nav-item:hover .fal {
+        transform: rotate(360deg);
+        float: left
+    }
+    
+    .dropdown-divider {
+        border-top: 2px solid rgb(253, 253, 253);
+    }
+</style>
+<div class="col-lg-2" style="margin-top: 50px;">
+
+    <div class="d-flex flex-column  flex-shrink-0 p-1 text-white bg-dark rounded" style="border-radius: 4.25rem;">
+        <div class="hero__categories__all" style="text-align: center;">
+            <i class="fa fa-bars"></i>
+            <span style="font-size: 14px;">Sections</span>
+        </div>
+        <ul class="nav nav-pills flex-column mb-auto">
+
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'farm_signup' %}" style="text-decoration: none;"><h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;">
+                    <i class="fal fa-tractor"></i> Create Farm</h5>
+                </a>
+
+            </li>
+
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'hydroExplaination' %}">
+
+                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-seedling"></i>Hydroponic</h5>
+                </a>
+            </li>
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'hydroSystem' %}">
+                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-farm"></i>Farm System</h5>
+                </a>
+
+            </li>
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'farms' %}">
+                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-hands-helping"></i>Farm Partners</h5>
+                </a>
+
+            </li>
+
+        </ul>
+
+    </div>
+</div>

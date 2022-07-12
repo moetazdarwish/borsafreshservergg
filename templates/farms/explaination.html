@@ -1,0 +1,77 @@
+{% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+<style>
+    .card-img-top:hover {
+        opacity: 1.0;
+    }
+    
+    divmainimg {
+        position: relative;
+    }
+    
+    div.divmenu {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+</style>
+
+<div class="container" style="margin-left: 5px;">
+    <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+        {% include 'farms/side_nave.html' %}
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="section-title">
+                        <h2>Hydroponic </h2>
+                    </div>
+
+                </div>
+            </div>
+            <div id="supplies">
+                <section style="border: 0px;align-items: center;">
+                    <div class="container-fluid">
+                        <div class="col-12" style="border: 0px;" id="farrm">
+                            <div class="row card " style="flex-direction: row;flex-wrap: nowrap;padding-left: 10px;border:0px;margin-bottom: 40px;">
+
+                                <div class="card-body">
+                                    <p>
+                                        <h4 class="font-weight-bolder " style="color: #502b2b; text-align: left;margin-bottom: 0px;">What Mean by Hydroponic Farms</h4>
+                                    </p>
+
+                                    <p class="card-text">Hydroponics is basically soilless cultivation where plants are grown without soil and by providing nutrients to water and roots are submerged in water to grow (soilless growth of plants and without conventional soil).</p>
+                                    <p class="card-text">We Offer Free Recommendations ,Consulting from expertise in Hydroponic Farms and Agriculture</p>
+
+
+                                </div> <img src="{% static 'img/front/home1.png' %}" class="card-img-top float-right" style="height: 250px;width: 250px;border-radius: 20%;margin: 10px;">
+                            </div>
+                            <div class="row card " style="flex-direction: row;flex-wrap: nowrap;padding-left: 10px;border:0px;margin-bottom: 40px;">
+                                <img src="{% static 'img/front/farm2-2.jpg' %}" class="card-img-top " style="height: auto;width: 350px;border-radius: 20%;margin: 10px;">
+                                <div class="card-body">
+                                    <p>
+                                        <h4 class="font-weight-bolder " style="color: #502b2b; text-align: left;margin-bottom: 0px;">What are Hydroponics Advantages</h4>
+                                    </p>
+                                    <p class="card-text">Maximizes Space Production By 30%</p>
+                                    <p class="card-text">Conserves Water growing plants in water actually use less water than growing the same plants in soil</p>
+                                    <p class="card-text">Produces Higher Yields Creating ideal conditions ensures plants receive the perfect amount of nutrients, which come in direct contact with roots. Additionally, microclimates allow for year-round growth and faster crop
+                                        cycles
+                                    </p>
+                                    <p class="card-text">Less Labor Without the need for tilling, weeding, herbicide and insecticide application, and other labor-intensive farm jobs, hydroponics offers a lighter load for laborers and can easily be managed with far fewer man-hours.
+                                        This both cuts back on the cost of producing crops, and frees up time for other pursuits. In fact, a small hydroponic greenhouse can be entirely managed by a single part-time worker.</p>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+
+        </div>
+    </div>
+
+    {% endblock %}

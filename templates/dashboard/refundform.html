@@ -1,0 +1,15 @@
+<form method="post" action="{% url 'getCashOTraderAccunt' user.id %}"> {% csrf_token %}
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-3">
+            <input type="text" name="trasid" class="form-control" placeholder="Transaction ID - only Numbers" required>
+
+        </div>
+        <div class="col-md-3">
+            <input type="text" name="trasref" class="form-control" placeholder="Transaction REF" required>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-12">
+            <button type="submit" class="btn btn-dark btn-rounded btn-fw" style="margin-left: 15px;">Pay</button>
+</form>

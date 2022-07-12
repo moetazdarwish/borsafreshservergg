@@ -1,0 +1,120 @@
+<style>
+    .nav-item .fal {
+        transition: all 1s;
+        float: left
+    }
+    
+    .nav-item:hover .fal {
+        transform: rotate(360deg);
+        float: left
+    }
+    
+    .dropdown-divider {
+        border-top: 2px solid rgb(253, 253, 253);
+    }
+</style>
+<div class="col-lg-3" style="margin-top: 100px;">
+
+    <div class="d-flex flex-column  flex-shrink-0 p-3 text-white bg-dark rounded" style="border-radius: 4.25rem;">
+        <div class="hero__categories__all" style="text-align: center;">
+            <i class="fa fa-bars"></i>
+            <span>All departments</span>
+        </div>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                <a style="cursor: pointer;" href="{% url 'allPurchase' %}"><i
+                        class="fal fa-shopping-cart"></i>Purchase</a>
+            </li>
+            <div class="dropdown-divider"></div>
+
+
+            <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                <a href="{% url 'farmsOrderAll' %}" style="cursor: pointer;"><i class="fal fa-store"></i> Order</a>
+
+
+
+            </li>
+
+            <div class="dropdown-divider"></div>
+
+
+            <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                <a href="{% url 'existCategory' %}" style="cursor: pointer;"><i class="fal fa-seedling"></i>
+                    Products</a>
+
+
+
+
+            </li>
+
+            <div class="dropdown-divider"></div>
+
+            <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                <a href="{% url 'allFarms' %}" style="cursor: pointer;"> <i class="fal fa-tractor"></i> Farm</a>
+
+
+            </li>
+            <div class="dropdown-divider"></div>
+
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'getCollectionProfile' %}">
+                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-dolly"></i> Collection </h5>
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'getDeliveryProfile' %}">
+                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-truck-container"></i> Delivery </h5>
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'getConsultAll' %}">
+                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-medkit"></i> Support </h5>
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'getAdvertiserAll' %}">
+                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-ad"></i> Ads </h5>
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                <a href="{% url 'getAccount' %}">
+                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-ad"></i> Account </h5>
+                </a>
+            </li>
+            <li>
+
+                <li class="nav-item" style="padding-top: 3px;text-align: center;">
+                    <a onclick="myreport()" style="cursor: pointer;"><i class="fal fa-file-chart-line"></i> Report</a>
+
+                    <div id="myRep" style="display: none;">
+                        <ul class="nav nav-pills flex-column mb-auto" id="pageSubmenu">
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'salesReport' %}">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-list"></i> Sales Report </h5>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'withdrawalReport' %}">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-sack-dollar"></i> Withdrawal</h5>
+                                </a>
+                            </li>
+                            <li class="nav-item" style="padding-top: 15px;text-align: center;">
+                                <a href="{% url 'farmProfile' %}">
+                                    <h5 style="font-size: 18px; color: #ffffff;margin-right: 10px;"><i class="fal fa-cogs"></i> Farm Profile </h5>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+            </li>
+
+        </ul>
+    </div>
+</div>

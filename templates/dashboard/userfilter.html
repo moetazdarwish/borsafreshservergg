@@ -1,0 +1,50 @@
+<table class="table table-bordered">
+    <thead>
+        <tr style="text-align: center;">
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>phone</th>
+            <th>City</th>
+            <th>Country</th>
+            <th colspan="2">Is Trader</th>
+            <th colspan="2">Is Farm</th>
+            <th>Details</th>
+            <th>Buyer</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in user %}
+        <tr style="text-align: center;" id="tr{{i.id}}">
+            <td>{{forloop.counter}}</td>
+            <td>{{i.name.get_full_name}}</td>
+            <td>{{i.name.email}} </td>
+            <td>{{i.phone}}</td>
+            <td>{{i.city}}</td>
+            <td>{{i.country}}</td>
+            <td>{{i.is_trader}}</td>
+            <td>{{i.trader_name}}</td>
+            <td>{{i.is_farm}}</td>
+            <td>{{i.farm_name}}</td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderDetails' %}" hx-trigger="click" hx-target="#data" hx-vals='{"myid": "{{i.id}}"}'>
+                    <i class="mdi mdi-information-outline icon-md text-danger"></i>
+                  </button>
+
+
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderUserDetails' %}" hx-trigger="click" hx-target="#data" hx-vals='{"myid": "{{i.name.id}}"}'>
+                <i class="mdi mdi-account-card-details icon-md text-danger"></i>
+                </button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary btn-rounded btn-icon" hx-get="{% url 'orderAction' i.id %}" hx-trigger="click" hx-target="#tr{{i.id}}" hx-swap="outerHTML" hx-vals='{"myid": "{{i.id}}"}'>
+                <i class="mdi mdi-routes icon-md text-danger"></i>
+                </button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+<div class="card">
+
+    <div class="card-body">
+        <div style="margin-bottom: 10px; float: right;">
+
+            <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-dark btn-rounded btn-fw">BACK</a>
+        </div>
+        <div class="col-md-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{{product.photo.url}}" style="height: 70px;width:70px;">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>{{product.country}}</td>
+                            </tr>
+                            <tr>
+
+                                <td style="padding: 10px;">{{product.name}} {{product.name_sc}}</td>
+                                <td style="padding: 10px;">{{ product.category}}</td>
+                                <td style="padding: 10px;">{{ product.box_name}} {{product.box_name_sc}}</td>
+                                <td style="padding: 10px;"> {{ product.scale}} {{ product.scale_sc}}</td>
+                                <td style="padding: 10px;"> {{ product.retail}} {{product.retail_sc}} </td>
+                                <td style="padding: 10px;">{{ product.st_refused}} {{product.st_refused_sc}}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 10px;"> {{product.st_accept}} {{product.st_accept_sc}}</td>
+                                <td style="padding: 10px;">{{product.st_confirmed}} {{ product.st_confirmed_sc}}</td>
+                                <td style="padding: 10px;">{{ product.st_delivery}} {{product.st_delivery_sc}}</td>
+                                <td style="padding: 10px;">{{ product.st_delivered}} {{ product.st_delivered_sc}}</td>
+                                <td style="padding: 10px;">{{ product.st_reschedule}} {{product.st_reschedule_sc}}</td>
+                                <td style="padding: 10px;"> {{product.st_cancelled}} {{product.st_cancelled_sc}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

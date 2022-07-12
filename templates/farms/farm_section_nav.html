@@ -1,0 +1,109 @@
+ {% load static %}
+
+
+<!-- ##### Header Area Start ##### -->
+<header class=" header-area ">
+
+    <!-- ***** Top Header Area ***** -->
+    <div class="top-header-area ">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-12 ">
+                    <div class="top-header-content d-flex align-items-center justify-content-between ">
+                        <!-- Top Header Content -->
+
+
+                        <!-- Top Header Content -->
+                        <div class="container d-flex" style="flex-direction: row-reverse;">
+
+                            <!-- Login -->
+                            <div class="login ">
+                                {% if request.user.farmsprofile %}
+                                <a href="# " style="color: white;margin-right: 30px;"><i class="fa fa-user " aria-hidden="true " style="margin-right: 5px;
+                                    color: palegreen;"></i> <span>{{ request.user.get_full_name |upper}}</span></a>
+
+                                <a href="{% url 'purchasingList' %}" style="color: white;margin-right: 30px;"><i class="fal fa-tachometer-alt" aria-hidden="true " style="margin-right: 5px;
+                                    color: palegreen;"></i> <span>Dashboard</span></a>
+
+
+
+                                <a href="{% url 'account_logout' %}" style="color: white;margin-right: 30px;"> <i class="fal fa-sign-out" aria-hidden="true " style="margin-right: 5px;
+                                    color: palegreen;"></i><span>Logout</span></a> {% else %}
+
+
+
+                                <a href="{% url 'farm_signup' %}" style="color: white;margin-right: 30px;">
+                                    <i class="fal fa-tractor"aria-hidden="true " style="margin-right: 5px;
+                                    color: palegreen;"></i>
+                                    <span>Create Farm</span></a>
+
+
+
+                                <a href="{% url 'user_login' %}" style="color: white;margin-right: 30px;"><i class="fal fa-sign-in" aria-hidden="true " style="margin-right: 5px;
+                                    color: palegreen;"></i>
+                                    <span>Login</span></a> {% endif %}
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Navbar Area ***** -->
+    <div class="alazea-main-menu ">
+        <div class="classy-nav-container breakpoint-off ">
+            <div class="container ">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between " id="alazeaNav ">
+
+                    <!-- Nav Brand -->
+                    <a href="index.html " class="nav-brand "><img src="{% static 'farm/logo2.png' %}" alt=" "></a>
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler ">
+                        <span class="navbarToggler "><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu ">
+
+                        <!-- Close Button -->
+                        <div class="classycloseIcon ">
+                            <div class="cross-wrap "><span class="top "></span><span class="bottom "></span></div>
+                        </div>
+
+                        <!-- Navbar Start -->
+                        <div class="classynav ">
+                            <ul>
+                                <li><a href=" {% url 'farms'%} ">Home</a></li>
+                                <li><a href="{% url 'FarmSupplies'%}">Farm Supplies</a></li>
+
+                                <li><a href="{% url 'home'%}">MarketPlace</a></li>
+                                <li><a href=" {% url 'supportRequest'%}">Support</a></li>
+                                <li><a href="{% url 'supportGrowing' %}">FAQ</a></li>
+                                <li><a href="{% url 'farmContact' %} ">Contact</a></li>
+                            </ul>
+
+
+                        </div>
+                        <!-- Navbar End -->
+                    </div>
+                </nav>
+
+                <!-- Search Form -->
+                <div class="search-form ">
+                    <form action="# " method="get ">
+                        <input type="search " name="search " id="search " placeholder="Type keywords &amp; press enter... ">
+                        <button type="submit " class="d-none "></button>
+                    </form>
+                    <!-- Close Icon -->
+                    <div class="closeIcon "><i class="fa fa-times " aria-hidden="true "></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ##### Header Area End ##### -->

@@ -1,0 +1,66 @@
+{% load widget_tweaks %}
+
+<div classs="d-flex flex-row align-items-center mb-4" style="display:flex;flex-wrap: nowrap;flex-direction: row;">
+    <div class="col-md-2">
+        <span><h4>{{category.name}}</h4></span>
+        <span><h5>{{category.category}}</h5></span>
+
+    </div>
+    <div class="col-md-6">
+
+        <img src="{{category.photo.url}}" class="rounded-circle mt-4" alt="" style="max-width: 50%;margin:0px;float:right;">
+
+    </div>
+
+</div>
+<div class="container">
+    
+        <table class="table table-borderless " style="width: 600px;">
+
+            <tbody>
+                <tr>
+                    <td>
+                        <label>Quality</label>
+                       
+                       
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                     
+                       
+                        {{category.quality_info}}
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <label>Packaging</label>
+                        
+                      
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                      
+                        
+                      {{category.packing_info}}
+                    </td>
+                </tr>
+               
+                <tr>
+                    <td>
+                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                            <a class="btn btn-primary rounded-pill" href="{{ request.META.HTTP_REFERER }}">Back</a>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </tbody>
+
+        </table>
+    
+
+</div>

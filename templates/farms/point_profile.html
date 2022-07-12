@@ -1,0 +1,125 @@
+<!doctype html> {% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+{% load widget_tweaks %}
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+            {% include 'farms/farm_nav.html' %}
+            <main class="col-md-10 ms-sm-auto  px-md-4">
+                <div class="container" style="margin: 25px;width:600px">
+
+                    <h2>Point Info</h2>
+                </div>
+                <div class="" id="profiledite">
+                    <table class="table  table-borderless">
+                        <tbody>
+                            <tr>
+
+                                <td colspan="2">
+                                    <div class="col-lg-8">
+                                        <div class="checkout__input">
+                                            <span><h5 class="text-muted font-weight-bolder ">Point Name :  {{get.point_name|title}}</h5></span>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td >
+                                    <div class="col-lg-4">
+                                        <div class="checkout__input">
+                                            <span><h5 class="text-muted font-weight-bolder">Phone:  {{get.phone}}</h5></span>
+
+                                        </div>
+                                    </div>
+                                </td>
+                                <td >
+                                    <div class="col-lg-4">
+                                        <div class="checkout__input">
+                                            <span><h5 class="text-muted font-weight-bolder ">Area:  {{get.area}}</h5></span>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+
+                                <td colspan="2">
+                                    <div class="col-lg-8">
+                                        <div class="checkout__input">
+                                            <span><h5 class="text-muted font-weight-bolder ">Address:{{get.address|title}}</h5></span>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            
+                           
+                            
+                            <tr>
+                                <td>
+                                    <div class="col-lg-8">
+                                        <div class="checkout__input">
+                                            <span><h5 class="text-muted font-weight-bolder">Town/City : {{get.city}}</h5></span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-lg-8">
+                                        <div class="checkout__input">
+                                            <span><h5 class="text-muted font-weight-bolder">Country/State: {{get.country}}</h5></span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-lg-8">
+                                        <div class="checkout__input">
+                                            <span><h5 class="text-muted font-weight-bolder">Open Time: {{get.start_time|time:"TIME_FORMAT"}}</h5></span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="col-lg-8">
+                                        <div class="checkout__input">
+                                            <span><h5 class="text-muted font-weight-bolder">Close Time: {{get.end_time|time:"TIME_FORMAT"}}</h5></span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="col-lg-8">
+                                        <div class="checkout__input">
+                                            <button class="btn btn-primary rounded-pill" hx-get="{% url 'editPointProfile' %}" hx-trigger="click" hx-target="#profiledite">Edit</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+
+</body>
+
+
+{% endblock %}

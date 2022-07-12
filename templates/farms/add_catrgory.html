@@ -1,0 +1,68 @@
+<!doctype html> {% extends 'home/main.html' %} {% load static %} {% block content %}
+<script src="https://unpkg.com/htmx.org@1.6.1"></script>
+
+{% load widget_tweaks %}
+
+
+
+<body>
+
+
+
+    <div class="container-fluid">
+        <div class="row" style="display: flex;
+        -ms-flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;flex-wrap: nowrap;">
+            {% include 'farms/farm_nav.html' %}
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+                <div class="container">
+                    <h2>Product Cagetory</h2>
+                </div>
+                <form method="post" enctype="multipart/form-data"> {% csrf_token %}
+                    <div class="container" style="margin: 50px;">
+                        <div class="d-flex flex-row align-items-center mb-4" style="width: 600px;">
+
+                            <div class="form-outline flex-fill mb-0">
+                                {% render_field form.name class="form-control" type="text" placeholder="Producat Name" %}
+
+                            </div>
+
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-4" style="width: 600px;">
+
+                            <div class="form-outline flex-fill mb-0">
+                                {% render_field form_category.category_name class="form-control" type="text" placeholder="Category Name" %}
+
+                            </div>
+
+                        </div>
+                        <div class="d-flex flex-row align-items-center mb-4" style="width: 600px;">
+
+                            <div class="form-outline flex-fill mb-0">
+                                {% render_field form.photo class="form-control" type="file" accept="image/png, image/gif, image/jpeg" %}
+
+                            </div>
+
+                        </div>
+                        <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                            <button type="submit" class="btn btn-primary btn-lg">ٍSubmit</button>
+                        </div>
+                        <div>
+                            <span>
+                                Please Note 
+                                New Category is Subject to Adminstration Approval within 24 Hours To Start Use It.
+                            </span>
+                        </div>
+                    </div>
+                </form>
+
+            </main>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+{% endblock %}
